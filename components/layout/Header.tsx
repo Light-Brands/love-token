@@ -9,8 +9,15 @@ import { HeartIcon, MenuIcon, CloseIcon } from '@/components/icons';
 const navigation = [
   { name: 'About', href: '/about' },
   { name: 'How It Works', href: '/how-it-works' },
+  { name: 'Impact', href: '/impact' },
+  { name: 'Communities', href: '/communities' },
   { name: 'Join', href: '/join' },
   { name: 'Meditate', href: '/meditate' },
+];
+
+const moreLinks = [
+  { name: 'FAQ', href: '/faq' },
+  { name: 'Energy Vision', href: '/energy' },
 ];
 
 export default function Header() {
@@ -83,6 +90,19 @@ export default function Header() {
               {item.name}
             </Link>
           ))}
+          <div className="pt-4 space-y-2 border-t border-border-mist">
+            <span className="text-xs text-stone-grey uppercase tracking-wide">More</span>
+            {moreLinks.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="block py-2 text-deep-root/60 hover:text-heart-rose transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
           <div className="pt-4 space-y-3 border-t border-border-mist">
             <Button variant="ghost" className="w-full">
               Sign In
