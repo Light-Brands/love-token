@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Header, Footer } from '@/components/layout';
-import { Button, Card, CardContent } from '@/components/ui';
+import { Button, Card, CardContent, GeneratedImage } from '@/components/ui';
 import { Lumi } from '@/components/lumi';
 import {
   HeartIcon,
@@ -113,10 +113,20 @@ export default function MeditatePage() {
   }, [isHolding, state, startMeditation]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-meditation-dusk via-deep-root to-deep-root text-white">
+    <div className="min-h-screen bg-gradient-to-b from-meditation-dusk via-deep-root to-deep-root text-white relative">
+      {/* Background Image */}
+      <div className="absolute inset-0 opacity-15">
+        <GeneratedImage
+          promptId="meditation-bg-abstract"
+          alt="Abstract light through fabric - dreamy and peaceful"
+          fill
+          objectFit="cover"
+        />
+      </div>
+
       <Header />
 
-      <main className="pt-24 pb-16 min-h-screen flex flex-col items-center justify-center">
+      <main className="pt-24 pb-16 min-h-screen flex flex-col items-center justify-center relative z-10">
         <div className="container-love">
           <AnimatePresence mode="wait">
             {/* Intro State */}
@@ -377,9 +387,14 @@ export default function MeditatePage() {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
-                  className="w-24 h-24 mx-auto mb-6 rounded-full bg-success-sage/20 flex items-center justify-center"
+                  className="w-32 h-32 mx-auto mb-6 relative overflow-hidden rounded-full"
                 >
-                  <CheckIcon size={48} className="text-success-sage" />
+                  <GeneratedImage
+                    promptId="celebration-meditation-complete"
+                    alt="Meditation completion celebration"
+                    fill
+                    className="rounded-full"
+                  />
                 </motion.div>
 
                 {/* Lumi */}

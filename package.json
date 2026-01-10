@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "images:list": "node scripts/generate-images.js --list",
+    "images:preview": "node scripts/generate-images.js --dry-run",
+    "images:generate": "node scripts/generate-images.js",
+    "images:generate:single": "node scripts/generate-images.js --single",
+    "images:update": "node scripts/update-placeholders.js"
   },
   "dependencies": {
     "next": "^14.2.0",

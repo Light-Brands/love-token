@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Header, Footer } from '@/components/layout';
-import { Card, CardContent } from '@/components/ui';
+import { Card, CardContent, GeneratedImage } from '@/components/ui';
 import { Lumi } from '@/components/lumi';
 import {
   HeartIcon,
@@ -59,26 +59,50 @@ export default function AboutPage() {
       <section className="pt-32 pb-16 md:pt-40 md:pb-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-lotus-soft/20 to-transparent" />
 
+        {/* IMAGE PLACEMENT: Hero Background
+            File: lovetoken-hero-community-gathering-1920x1080.png
+            Wide shot of village community gathering */}
+
         <div className="container-love relative z-10">
-          <motion.div
-            initial="initial"
-            animate="animate"
-            variants={fadeIn}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-2 bg-heart-rose/10 text-heart-rose rounded-full text-sm font-medium mb-6">
-              <GlobalIcon size={16} />
-              Our Story
-            </span>
-            <h1 className="heading-1 mb-6">
-              The World&apos;s Greatest
-              <span className="gradient-text block">Experiment</span>
-            </h1>
-            <p className="body-large text-deep-root/70">
-              We&apos;re proving that love — real, measurable, practical love —
-              can become the foundation of a new economic system.
-            </p>
-          </motion.div>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial="initial"
+              animate="animate"
+              variants={fadeIn}
+              className="text-center lg:text-left"
+            >
+              <span className="inline-flex items-center gap-2 px-4 py-2 bg-heart-rose/10 text-heart-rose rounded-full text-sm font-medium mb-6">
+                <GlobalIcon size={16} />
+                Our Story
+              </span>
+              <h1 className="heading-1 mb-6">
+                The World&apos;s Greatest
+                <span className="gradient-text block">Experiment</span>
+              </h1>
+              <p className="body-large text-deep-root/70">
+                We&apos;re proving that love — real, measurable, practical love —
+                can become the foundation of a new economic system.
+              </p>
+            </motion.div>
+
+            {/* Hero Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="hidden lg:block"
+            >
+              <div className="relative aspect-square w-full overflow-hidden rounded-card">
+                <GeneratedImage
+                  promptId="hero-community-gathering"
+                  alt="A community gathering in a village courtyard at dawn"
+                  fill
+                  className="rounded-card"
+                  priority
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -115,8 +139,16 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="flex justify-center"
+              className="flex flex-col items-center gap-8"
             >
+              <div className="relative aspect-video w-full max-w-md overflow-hidden rounded-card">
+                <GeneratedImage
+                  promptId="mission-intergenerational"
+                  alt="An elder and young person sharing a meaningful moment together"
+                  fill
+                  className="rounded-card"
+                />
+              </div>
               <Lumi
                 message="We're stewarding something sacred — a system where love creates real value."
                 state="speaking"
