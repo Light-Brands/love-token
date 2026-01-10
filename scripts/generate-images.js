@@ -12,8 +12,9 @@
  * Options:
  *   --dry-run    Preview prompts without generating images
  *   --single ID  Generate only a specific image by promptId
- *   --list       List all image prompts (V1 + V2)
+ *   --list       List all image prompts (V1 + V2 + V3 + V4)
  *   --new-only   Generate only V2 (new MVP) prompts
+ *   --v4-only    Generate only V4 (new dynamic page) prompts
  */
 
 const fs = require('fs');
@@ -40,6 +41,15 @@ try {
   V3_PROMPTS = v3Module.MISSING_IMAGE_PROMPTS || [];
 } catch (e) {
   // V3 prompts not available, that's okay
+}
+
+// Import V4 prompts (new dynamic page images) if available
+let V4_PROMPTS = [];
+try {
+  const v4Module = require('./image-prompts-v4.js');
+  V4_PROMPTS = v4Module.V4_IMAGE_PROMPTS || [];
+} catch (e) {
+  // V4 prompts not available, that's okay
 }
 
 // Brand style guide for consistent image generation
@@ -192,8 +202,8 @@ const IMAGE_PROMPTS = [
   },
 ];
 
-// Merge V1, V2, and V3 prompts
-const ALL_IMAGE_PROMPTS = [...IMAGE_PROMPTS, ...V2_PROMPTS, ...V3_PROMPTS];
+// Merge V1, V2, V3, and V4 prompts
+const ALL_IMAGE_PROMPTS = [...IMAGE_PROMPTS, ...V2_PROMPTS, ...V3_PROMPTS, ...V4_PROMPTS];
 
 // Utility functions
 function log(message, type = 'info') {
@@ -269,15 +279,17 @@ async function main() {
 
   // List mode
   if (listOnly) {
-    console.log('\n📷 Love Token Image Prompts (V1 + V2)\n');
+    console.log('\n📷 Love Token Image Prompts (V1 + V2 + V3 + V4)\n');
     console.log('='.repeat(60));
     console.log(`V1 (Original):  ${IMAGE_PROMPTS.length} images`);
     console.log(`V2 (New MVP):   ${V2_PROMPTS.length} images`);
     console.log(`V3 (Missing):   ${V3_PROMPTS.length} images`);
+    console.log(`V4 (New Pages): ${V4_PROMPTS.length} images`);
     console.log('='.repeat(60));
     ALL_IMAGE_PROMPTS.forEach((p, i) => {
       let version = '[V1]';
-      if (i >= IMAGE_PROMPTS.length + V2_PROMPTS.length) version = '[V3]';
+      if (i >= IMAGE_PROMPTS.length + V2_PROMPTS.length + V3_PROMPTS.length) version = '[V4]';
+      else if (i >= IMAGE_PROMPTS.length + V2_PROMPTS.length) version = '[V3]';
       else if (i >= IMAGE_PROMPTS.length) version = '[V2]';
       console.log(`\n${i + 1}. ${version} ${p.promptId}`);
       console.log(`   Description: ${p.description}`);
@@ -301,11 +313,18 @@ async function main() {
     fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   }
 
-  // Filter prompts if single specified, or only new (v2) prompts
+  // Filter prompts if single specified, or only specific version
   const newOnlyIndex = args.indexOf('--new-only');
   const newOnly = newOnlyIndex !== -1;
+  const v4OnlyIndex = args.indexOf('--v4-only');
+  const v4Only = v4OnlyIndex !== -1;
   
-  let promptsToProcess = newOnly ? V2_PROMPTS : ALL_IMAGE_PROMPTS;
+  let promptsToProcess = ALL_IMAGE_PROMPTS;
+  if (v4Only) {
+    promptsToProcess = V4_PROMPTS;
+  } else if (newOnly) {
+    promptsToProcess = V2_PROMPTS;
+  }
   
   if (singleId) {
     promptsToProcess = ALL_IMAGE_PROMPTS.filter(p => p.promptId === singleId);

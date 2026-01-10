@@ -294,7 +294,32 @@
       "filename": "hero-energy-community.png",
       "generatedAt": "2026-01-10T10:45:28.566Z",
       "size": "1024x1024"
+    },
+    "energy-lighting-upgrade": {
+      "filename": "energy-lighting-upgrade.png",
+      "generatedAt": "2026-01-10T12:49:31.483Z",
+      "size": "1024x1024"
+    },
+    "energy-full-infrastructure": {
+      "filename": "energy-full-infrastructure.png",
+      "generatedAt": "2026-01-10T12:49:51.383Z",
+      "size": "1024x1024"
+    },
+    "community-goal-meditation-hall": {
+      "filename": "community-goal-meditation-hall.png",
+      "generatedAt": "2026-01-10T12:50:14.509Z",
+      "size": "1024x1024"
+    },
+    "community-goal-boat": {
+      "filename": "community-goal-boat.png",
+      "generatedAt": "2026-01-10T12:50:38.015Z",
+      "size": "1024x1024"
+    },
+    "community-goal-irrigation": {
+      "filename": "community-goal-irrigation.png",
+      "generatedAt": "2026-01-10T12:50:59.830Z",
+      "size": "1024x1024"
     }
   },
-  "lastUpdated": "2026-01-10T10:45:28.569Z"
+  "lastUpdated": "2026-01-10T12:50:59.831Z"
 }
