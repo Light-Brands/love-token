@@ -508,24 +508,29 @@ export default function AboutPage() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {values.map((value, index) => (
-              <motion.div
-                key={value.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white/10 backdrop-blur-sm rounded-card p-6 border border-white/10"
-              >
-                <h3 className="text-lg font-semibold text-sunlit-gold mb-2">
-                  {value.title}
-                </h3>
-                <p className="text-white/70 text-sm mb-4">{value.description}</p>
-                <div className="pt-3 border-t border-white/10">
-                  <p className="text-xs text-white/50 italic">{value.principle}</p>
-                </div>
-              </motion.div>
-            ))}
+            {values.map((value, index) => {
+              const slug = value.title.toLowerCase().replace(/\s+/g, '-');
+              return (
+                <Link key={value.title} href={`/about/values/${slug}`}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="bg-white/10 backdrop-blur-sm rounded-card p-6 border border-white/10 h-full hover:bg-white/20 transition-colors cursor-pointer"
+                  >
+                    <h3 className="text-lg font-semibold text-sunlit-gold mb-2">
+                      {value.title}
+                    </h3>
+                    <p className="text-white/70 text-sm mb-4">{value.description}</p>
+                    <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+                      <p className="text-xs text-white/50 italic">{value.principle}</p>
+                      <ArrowRightIcon size={14} className="text-white/40" />
+                    </div>
+                  </motion.div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -565,37 +570,50 @@ export default function AboutPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {phases.map((phase, index) => (
-              <motion.div
-                key={phase.phase}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card variant="warm" className="h-full">
-                  <CardContent>
-                    <div className={`w-12 h-12 mb-4 rounded-full bg-${phase.color}/10 flex items-center justify-center`}>
-                      <phase.icon size={24} className={`text-${phase.color}`} />
-                    </div>
-                    <div className="text-xs text-stone-grey uppercase tracking-wide mb-1">
-                      {phase.phase}
-                    </div>
-                    <h3 className="text-lg font-semibold text-deep-root mb-4">
-                      {phase.title}
-                    </h3>
-                    <ul className="space-y-2">
-                      {phase.items.map((item, i) => (
-                        <li key={i} className="flex items-start gap-2 text-xs text-deep-root/70">
-                          <CheckIcon size={12} className="flex-shrink-0 mt-0.5 text-success-sage" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+            {phases.map((phase, index) => {
+              const slugMap: Record<string, string> = {
+                'Phase 1': 'mvp-core',
+                'Phase 2': 'donor-impact',
+                'Phase 3': 'energy-integration',
+                'Phase 4': 'global-scale',
+              };
+              return (
+                <Link key={phase.phase} href={`/about/phases/${slugMap[phase.phase]}`}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="h-full"
+                  >
+                    <Card variant="warm" className="h-full hover:shadow-lg transition-shadow cursor-pointer">
+                      <CardContent>
+                        <div className={`w-12 h-12 mb-4 rounded-full bg-${phase.color}/10 flex items-center justify-center`}>
+                          <phase.icon size={24} className={`text-${phase.color}`} />
+                        </div>
+                        <div className="text-xs text-stone-grey uppercase tracking-wide mb-1">
+                          {phase.phase}
+                        </div>
+                        <h3 className="text-lg font-semibold text-deep-root mb-4">
+                          {phase.title}
+                        </h3>
+                        <ul className="space-y-2 mb-4">
+                          {phase.items.slice(0, 3).map((item, i) => (
+                            <li key={i} className="flex items-start gap-2 text-xs text-deep-root/70">
+                              <CheckIcon size={12} className="flex-shrink-0 mt-0.5 text-success-sage" />
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="flex items-center gap-1 text-xs text-heart-rose">
+                          Learn more <ArrowRightIcon size={12} />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

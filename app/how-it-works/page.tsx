@@ -729,37 +729,52 @@ export default function HowItWorksPage() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {roles.map((role, index) => (
-              <motion.div
-                key={role.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card className="h-full">
-                  <CardContent>
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className="w-12 h-12 rounded-full bg-love-flow flex items-center justify-center flex-shrink-0">
-                        <role.icon size={24} className="text-white" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-deep-root">{role.title}</h3>
-                        <p className="text-stone-grey text-sm">{role.description}</p>
-                      </div>
-                    </div>
-                    <ul className="space-y-2 pl-2">
-                      {role.details.map((detail, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-deep-root/80">
-                          <CheckIcon size={14} className="flex-shrink-0 mt-0.5 text-success-sage" />
-                          {detail}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+            {roles.map((role, index) => {
+              const slugMap: Record<string, string> = {
+                'Public User': 'public-user',
+                'Donor': 'donor',
+                'Love Farmer': 'love-farmer',
+                'Vendor': 'vendor',
+                'Love Farm Admin': 'farm-admin',
+                'TWGE Admin': 'twge-admin',
+              };
+              return (
+                <Link key={role.title} href={`/roles/${slugMap[role.title]}`}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="h-full"
+                  >
+                    <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
+                      <CardContent>
+                        <div className="flex items-start gap-4 mb-4">
+                          <div className="w-12 h-12 rounded-full bg-love-flow flex items-center justify-center flex-shrink-0">
+                            <role.icon size={24} className="text-white" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold text-deep-root">{role.title}</h3>
+                            <p className="text-stone-grey text-sm">{role.description}</p>
+                          </div>
+                        </div>
+                        <ul className="space-y-2 pl-2 mb-4">
+                          {role.details.slice(0, 3).map((detail, i) => (
+                            <li key={i} className="flex items-start gap-2 text-sm text-deep-root/80">
+                              <CheckIcon size={14} className="flex-shrink-0 mt-0.5 text-success-sage" />
+                              {detail}
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="flex items-center gap-1 text-sm text-heart-rose pl-2">
+                          Learn more <ArrowRightIcon size={14} />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

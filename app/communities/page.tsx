@@ -196,62 +196,70 @@ export default function CommunitiesPage() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {activeCommunities.map((community, index) => (
-              <motion.div
-                key={community.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card className="h-full overflow-hidden">
-                  <div className="relative aspect-video">
-                    <GeneratedImage
-                      promptId={community.imagePromptId}
-                      alt={`${community.name} community`}
-                      fill
-                      objectFit="cover"
-                    />
-                    <div className="absolute top-3 right-3">
-                      <span className="inline-flex items-center gap-1 px-2 py-1 bg-success-sage text-white rounded text-xs">
-                        <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                        Active
-                      </span>
-                    </div>
-                  </div>
-                  <CardContent>
-                    <div className="flex items-center gap-2 mb-2">
-                      <MapPinIcon size={16} className="text-heart-rose" />
-                      <span className="text-sm text-stone-grey">{community.location}</span>
-                    </div>
-                    <h3 className="text-xl font-semibold text-deep-root mb-2">
-                      {community.name}
-                    </h3>
-                    <p className="text-deep-root/70 text-sm mb-4">
-                      {community.description}
-                    </p>
-                    <div className="grid grid-cols-4 gap-2 pt-4 border-t border-border-mist">
-                      <div className="text-center">
-                        <div className="text-lg font-bold text-heart-rose">{community.farmers}</div>
-                        <div className="text-xs text-stone-grey">Farmers</div>
+            {activeCommunities.map((community, index) => {
+              const slug = community.name.toLowerCase().replace(/\s+/g, '-');
+              return (
+                <Link key={community.name} href={`/communities/${slug}`}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="h-full"
+                  >
+                    <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+                      <div className="relative aspect-video">
+                        <GeneratedImage
+                          promptId={community.imagePromptId}
+                          alt={`${community.name} community`}
+                          fill
+                          objectFit="cover"
+                        />
+                        <div className="absolute top-3 right-3">
+                          <span className="inline-flex items-center gap-1 px-2 py-1 bg-success-sage text-white rounded text-xs">
+                            <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                            Active
+                          </span>
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <div className="text-lg font-bold text-sunlit-gold">{community.vendors}</div>
-                        <div className="text-xs text-stone-grey">Vendors</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-lg font-bold text-meditation-dusk">{community.meditations}</div>
-                        <div className="text-xs text-stone-grey">Sessions</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-lg font-bold text-om-sage">{community.creditsCirculated}</div>
-                        <div className="text-xs text-stone-grey">LVC</div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+                      <CardContent>
+                        <div className="flex items-center gap-2 mb-2">
+                          <MapPinIcon size={16} className="text-heart-rose" />
+                          <span className="text-sm text-stone-grey">{community.location}</span>
+                        </div>
+                        <h3 className="text-xl font-semibold text-deep-root mb-2">
+                          {community.name}
+                        </h3>
+                        <p className="text-deep-root/70 text-sm mb-4">
+                          {community.description}
+                        </p>
+                        <div className="grid grid-cols-4 gap-2 pt-4 border-t border-border-mist mb-4">
+                          <div className="text-center">
+                            <div className="text-lg font-bold text-heart-rose">{community.farmers}</div>
+                            <div className="text-xs text-stone-grey">Farmers</div>
+                          </div>
+                          <div className="text-center">
+                            <div className="text-lg font-bold text-sunlit-gold">{community.vendors}</div>
+                            <div className="text-xs text-stone-grey">Vendors</div>
+                          </div>
+                          <div className="text-center">
+                            <div className="text-lg font-bold text-meditation-dusk">{community.meditations}</div>
+                            <div className="text-xs text-stone-grey">Sessions</div>
+                          </div>
+                          <div className="text-center">
+                            <div className="text-lg font-bold text-om-sage">{community.creditsCirculated}</div>
+                            <div className="text-xs text-stone-grey">LVC</div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-1 text-sm text-heart-rose">
+                          Visit community <ArrowRightIcon size={14} />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -273,35 +281,43 @@ export default function CommunitiesPage() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {onboardingCommunities.map((community, index) => (
-              <motion.div
-                key={community.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card className="h-full">
-                  <CardContent>
-                    <div className="flex items-start justify-between mb-4">
-                      <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <MapPinIcon size={14} className="text-stone-grey" />
-                          <span className="text-xs text-stone-grey">{community.location}</span>
+            {onboardingCommunities.map((community, index) => {
+              const slug = community.name.toLowerCase().replace(/\s+/g, '-');
+              return (
+                <Link key={community.name} href={`/communities/${slug}`}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="h-full"
+                  >
+                    <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
+                      <CardContent>
+                        <div className="flex items-start justify-between mb-4">
+                          <div>
+                            <div className="flex items-center gap-2 mb-1">
+                              <MapPinIcon size={14} className="text-stone-grey" />
+                              <span className="text-xs text-stone-grey">{community.location}</span>
+                            </div>
+                            <h3 className="font-semibold text-deep-root">{community.name}</h3>
+                          </div>
+                          <span className="inline-block px-2 py-1 bg-sunlit-gold/10 text-sunlit-gold rounded text-xs">
+                            Onboarding
+                          </span>
                         </div>
-                        <h3 className="font-semibold text-deep-root">{community.name}</h3>
-                      </div>
-                      <span className="inline-block px-2 py-1 bg-sunlit-gold/10 text-sunlit-gold rounded text-xs">
-                        Onboarding
-                      </span>
-                    </div>
-                    <p className="text-deep-root/70 text-sm">
-                      {community.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+                        <p className="text-deep-root/70 text-sm mb-4">
+                          {community.description}
+                        </p>
+                        <div className="flex items-center gap-1 text-sm text-heart-rose">
+                          Learn more <ArrowRightIcon size={14} />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

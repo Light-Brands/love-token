@@ -7,20 +7,22 @@ import { HeartIcon, GlobalIcon } from '@/components/icons';
 const footerLinks = {
   product: [
     { name: 'How It Works', href: '/how-it-works' },
-    { name: 'Join as Farmer', href: '/join?role=farmer' },
-    { name: 'Become a Donor', href: '/join?role=donor' },
-    { name: 'Vendor Network', href: '/join?role=vendor' },
+    { name: 'Love Farmers', href: '/roles/love-farmer' },
+    { name: 'Donors', href: '/roles/donor' },
+    { name: 'Vendors', href: '/roles/vendor' },
     { name: 'Meditate', href: '/meditate' },
   ],
   community: [
     { name: 'Impact Dashboard', href: '/impact' },
     { name: 'Love Farms', href: '/communities' },
+    { name: 'Sunrise Village', href: '/communities/sunrise-village' },
     { name: 'Energy Vision', href: '/energy' },
-    { name: 'Stories', href: '/impact#stories' },
+    { name: 'Impact Stories', href: '/impact/stories/maria-sunrise-village' },
   ],
   company: [
     { name: 'About Us', href: '/about' },
-    { name: 'Our Mission', href: '/about#mission' },
+    { name: 'Our Values', href: '/about/values/dignity-first' },
+    { name: 'Roadmap', href: '/about/phases/mvp-core' },
     { name: 'FAQ', href: '/faq' },
     { name: 'Contact', href: '/join' },
   ],
