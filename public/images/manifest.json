@@ -89,7 +89,177 @@
       "filename": "celebration-meditation-complete.png",
       "generatedAt": "2026-01-10T03:35:12.365Z",
       "size": "1024x1024"
+    },
+    "role-public-user": {
+      "filename": "role-public-user.png",
+      "generatedAt": "2026-01-10T10:18:37.148Z",
+      "size": "1024x1024"
+    },
+    "role-farm-admin": {
+      "filename": "role-farm-admin.png",
+      "generatedAt": "2026-01-10T10:18:56.044Z",
+      "size": "1024x1024"
+    },
+    "role-twge-admin": {
+      "filename": "role-twge-admin.png",
+      "generatedAt": "2026-01-10T10:19:17.415Z",
+      "size": "1024x1024"
+    },
+    "meditation-public-donor": {
+      "filename": "meditation-public-donor.png",
+      "generatedAt": "2026-01-10T10:19:39.707Z",
+      "size": "1024x1024"
+    },
+    "meditation-presence-verify": {
+      "filename": "meditation-presence-verify.png",
+      "generatedAt": "2026-01-10T10:19:59.368Z",
+      "size": "1024x1024"
+    },
+    "meditation-group-session": {
+      "filename": "meditation-group-session.png",
+      "generatedAt": "2026-01-10T10:20:29.093Z",
+      "size": "1024x1024"
+    },
+    "wallet-display": {
+      "filename": "wallet-display.png",
+      "generatedAt": "2026-01-10T10:20:57.749Z",
+      "size": "1024x1024"
+    },
+    "credits-earning": {
+      "filename": "credits-earning.png",
+      "generatedAt": "2026-01-10T10:21:21.239Z",
+      "size": "1024x1024"
+    },
+    "streak-bonus": {
+      "filename": "streak-bonus.png",
+      "generatedAt": "2026-01-10T10:21:41.370Z",
+      "size": "1024x1024"
+    },
+    "transaction-qr-scan": {
+      "filename": "transaction-qr-scan.png",
+      "generatedAt": "2026-01-10T10:22:01.397Z",
+      "size": "1024x1024"
+    },
+    "transaction-peer-transfer": {
+      "filename": "transaction-peer-transfer.png",
+      "generatedAt": "2026-01-10T10:22:23.367Z",
+      "size": "1024x1024"
+    },
+    "vendor-redemption-request": {
+      "filename": "vendor-redemption-request.png",
+      "generatedAt": "2026-01-10T10:22:44.948Z",
+      "size": "1024x1024"
+    },
+    "donor-subscription": {
+      "filename": "donor-subscription.png",
+      "generatedAt": "2026-01-10T10:23:09.054Z",
+      "size": "1024x1024"
+    },
+    "donor-receiving-love": {
+      "filename": "donor-receiving-love.png",
+      "generatedAt": "2026-01-10T10:23:28.265Z",
+      "size": "1024x1024"
+    },
+    "donor-impact-view": {
+      "filename": "donor-impact-view.png",
+      "generatedAt": "2026-01-10T10:23:47.435Z",
+      "size": "1024x1024"
+    },
+    "community-goal-education": {
+      "filename": "community-goal-education.png",
+      "generatedAt": "2026-01-10T10:24:15.036Z",
+      "size": "1024x1024"
+    },
+    "community-goal-water": {
+      "filename": "community-goal-water.png",
+      "generatedAt": "2026-01-10T10:24:37.654Z",
+      "size": "1024x1024"
+    },
+    "community-goal-food": {
+      "filename": "community-goal-food.png",
+      "generatedAt": "2026-01-10T10:24:57.854Z",
+      "size": "1024x1024"
+    },
+    "project-progress": {
+      "filename": "project-progress.png",
+      "generatedAt": "2026-01-10T10:25:17.531Z",
+      "size": "1024x1024"
+    },
+    "energy-community-power": {
+      "filename": "energy-community-power.png",
+      "generatedAt": "2026-01-10T10:25:43.377Z",
+      "size": "1024x1024"
+    },
+    "energy-dashboard": {
+      "filename": "energy-dashboard.png",
+      "generatedAt": "2026-01-10T10:26:05.153Z",
+      "size": "1024x1024"
+    },
+    "energy-charging-station": {
+      "filename": "energy-charging-station.png",
+      "generatedAt": "2026-01-10T10:26:25.951Z",
+      "size": "1024x1024"
+    },
+    "wellbeing-checkin": {
+      "filename": "wellbeing-checkin.png",
+      "generatedAt": "2026-01-10T10:27:46.412Z",
+      "size": "1024x1024"
+    },
+    "miracle-story": {
+      "filename": "miracle-story.png",
+      "generatedAt": "2026-01-10T10:28:09.439Z",
+      "size": "1024x1024"
+    },
+    "inspiration-feed": {
+      "filename": "inspiration-feed.png",
+      "generatedAt": "2026-01-10T10:28:41.528Z",
+      "size": "1024x1024"
+    },
+    "global-love-counter": {
+      "filename": "global-love-counter.png",
+      "generatedAt": "2026-01-10T10:29:02.336Z",
+      "size": "1024x1024"
+    },
+    "total-meditation-hours": {
+      "filename": "total-meditation-hours.png",
+      "generatedAt": "2026-01-10T10:29:23.227Z",
+      "size": "1024x1024"
+    },
+    "community-network": {
+      "filename": "community-network.png",
+      "generatedAt": "2026-01-10T10:29:44.793Z",
+      "size": "1024x1024"
+    },
+    "onboarding-welcome": {
+      "filename": "onboarding-welcome.png",
+      "generatedAt": "2026-01-10T10:30:08.341Z",
+      "size": "1024x1024"
+    },
+    "onboarding-choose-role": {
+      "filename": "onboarding-choose-role.png",
+      "generatedAt": "2026-01-10T10:30:35.351Z",
+      "size": "1024x1024"
+    },
+    "local-verification": {
+      "filename": "local-verification.png",
+      "generatedAt": "2026-01-10T10:31:59.160Z",
+      "size": "1024x1024"
+    },
+    "audit-trail": {
+      "filename": "audit-trail.png",
+      "generatedAt": "2026-01-10T10:32:22.149Z",
+      "size": "1024x1024"
+    },
+    "energy-refrigeration": {
+      "filename": "energy-refrigeration.png",
+      "generatedAt": "2026-01-10T10:36:16.742Z",
+      "size": "1024x1024"
+    },
+    "symbol-based-ui": {
+      "filename": "symbol-based-ui.png",
+      "generatedAt": "2026-01-10T10:36:42.054Z",
+      "size": "1024x1024"
     }
   },
-  "lastUpdated": "2026-01-10T03:35:12.365Z"
+  "lastUpdated": "2026-01-10T10:36:42.059Z"
 }

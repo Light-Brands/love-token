@@ -4,6 +4,7 @@
  * Love Token Image Generation Script
  * 
  * Generates all placeholder images using OpenAI's DALL-E 3 API
+ * Automatically skips images that already exist (safe to re-run)
  * 
  * Usage:
  *   OPENAI_API_KEY=your-key node scripts/generate-images.js
@@ -11,7 +12,8 @@
  * Options:
  *   --dry-run    Preview prompts without generating images
  *   --single ID  Generate only a specific image by promptId
- *   --list       List all image prompts
+ *   --list       List all image prompts (V1 + V2)
+ *   --new-only   Generate only V2 (new MVP) prompts
  */
 
 const fs = require('fs');
@@ -21,6 +23,15 @@ const https = require('https');
 // Configuration
 const OUTPUT_DIR = path.join(__dirname, '..', 'public', 'images');
 const MANIFEST_PATH = path.join(OUTPUT_DIR, 'manifest.json');
+
+// Import V2 prompts if available
+let V2_PROMPTS = [];
+try {
+  const v2Module = require('./image-prompts-v2.js');
+  V2_PROMPTS = v2Module.NEW_IMAGE_PROMPTS || [];
+} catch (e) {
+  // V2 prompts not available, that's okay
+}
 
 // Brand style guide for consistent image generation
 const BRAND_STYLE = `
@@ -172,6 +183,9 @@ const IMAGE_PROMPTS = [
   },
 ];
 
+// Merge V1 and V2 prompts (V2 prompts are added after V1)
+const ALL_IMAGE_PROMPTS = [...IMAGE_PROMPTS, ...V2_PROMPTS];
+
 // Utility functions
 function log(message, type = 'info') {
   const prefix = {
@@ -246,15 +260,19 @@ async function main() {
 
   // List mode
   if (listOnly) {
-    console.log('\n📷 Love Token Image Prompts\n');
-    console.log('=' .repeat(60));
-    IMAGE_PROMPTS.forEach((p, i) => {
-      console.log(`\n${i + 1}. ${p.promptId}`);
+    console.log('\n📷 Love Token Image Prompts (V1 + V2)\n');
+    console.log('='.repeat(60));
+    console.log(`V1 (Original): ${IMAGE_PROMPTS.length} images`);
+    console.log(`V2 (New MVP):  ${V2_PROMPTS.length} images`);
+    console.log('='.repeat(60));
+    ALL_IMAGE_PROMPTS.forEach((p, i) => {
+      const version = i < IMAGE_PROMPTS.length ? '[V1]' : '[V2]';
+      console.log(`\n${i + 1}. ${version} ${p.promptId}`);
       console.log(`   Description: ${p.description}`);
       console.log(`   Size: ${p.size}`);
     });
     console.log('\n' + '='.repeat(60));
-    console.log(`\nTotal: ${IMAGE_PROMPTS.length} images\n`);
+    console.log(`\nTotal: ${ALL_IMAGE_PROMPTS.length} images\n`);
     return;
   }
 
@@ -271,10 +289,14 @@ async function main() {
     fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   }
 
-  // Filter prompts if single specified
-  let promptsToProcess = IMAGE_PROMPTS;
+  // Filter prompts if single specified, or only new (v2) prompts
+  const newOnlyIndex = args.indexOf('--new-only');
+  const newOnly = newOnlyIndex !== -1;
+  
+  let promptsToProcess = newOnly ? V2_PROMPTS : ALL_IMAGE_PROMPTS;
+  
   if (singleId) {
-    promptsToProcess = IMAGE_PROMPTS.filter(p => p.promptId === singleId);
+    promptsToProcess = ALL_IMAGE_PROMPTS.filter(p => p.promptId === singleId);
     if (promptsToProcess.length === 0) {
       log(`No prompt found with ID: ${singleId}`, 'error');
       log('Run with --list to see available prompts', 'info');
