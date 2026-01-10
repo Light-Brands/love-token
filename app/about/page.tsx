@@ -150,6 +150,20 @@ const phases = [
       'Worldwide adoption',
     ],
   },
+  {
+    phase: 'Phase 5',
+    title: 'Eternal Legacy',
+    icon: SparklesIcon,
+    color: 'heart-rose',
+    items: [
+      'Self-sustaining treasury',
+      'Intergenerational transfer',
+      'Autonomous communities',
+      'Living documentation',
+      'Spiritual succession',
+      'Universal basic love',
+    ],
+  },
 ];
 
 // Team placeholders
@@ -569,13 +583,14 @@ export default function AboutPage() {
             </motion.div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
             {phases.map((phase, index) => {
               const slugMap: Record<string, string> = {
                 'Phase 1': 'mvp-core',
                 'Phase 2': 'donor-impact',
                 'Phase 3': 'energy-integration',
                 'Phase 4': 'global-scale',
+                'Phase 5': 'eternal-legacy',
               };
               return (
                 <Link key={phase.phase} href={`/about/phases/${slugMap[phase.phase]}`}>
