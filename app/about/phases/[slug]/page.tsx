@@ -22,11 +22,25 @@ import {
   FlowIcon,
   ZapIcon,
 } from '@/components/icons';
+import {
+  Phase1Infographic,
+  Phase2Infographic,
+  Phase3Infographic,
+  Phase4Infographic,
+} from '@/components/icons/PhaseInfographics';
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.6, ease: 'easeOut' },
+};
+
+// Infographic components map
+const phaseInfographics: Record<number, React.ComponentType<{ size?: number; className?: string; animated?: boolean }>> = {
+  1: Phase1Infographic,
+  2: Phase2Infographic,
+  3: Phase3Infographic,
+  4: Phase4Infographic,
 };
 
 // Comprehensive phase data based on master plan
@@ -325,6 +339,7 @@ export default function PhaseDetailPage() {
   }
 
   const Icon = phase.icon;
+  const Infographic = phaseInfographics[phase.number];
 
   const statusColors = {
     current: 'success-sage',
@@ -373,12 +388,15 @@ export default function PhaseDetailPage() {
               <span className="text-sm text-deep-root/60">{phase.timeline}</span>
             </div>
 
-            <div className={`w-20 h-20 mx-auto mb-6 rounded-full bg-${phase.color}/10 flex items-center justify-center`}>
-              <Icon size={40} className={`text-${phase.color}`} />
-            </div>
-
-            <div className="text-sm text-stone-grey uppercase tracking-wide mb-2">
-              Phase {phase.number}
+            {/* Phase Infographic */}
+            <div className="mx-auto mb-6 flex items-center justify-center">
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+              >
+                <Infographic size={160} animated={true} />
+              </motion.div>
             </div>
 
             <h1 className="heading-1 mb-4">

@@ -20,6 +20,12 @@ import {
   CoinIcon,
   ZapIcon,
 } from '@/components/icons';
+import {
+  Phase1Infographic,
+  Phase2Infographic,
+  Phase3Infographic,
+  Phase4Infographic,
+} from '@/components/icons/PhaseInfographics';
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -92,12 +98,13 @@ const timeline = [
   { year: 'MVP', description: 'Launching the world\'s first functioning Love Economy' },
 ];
 
-// Detailed phases
+// Detailed phases with infographics
 const phases = [
   {
     phase: 'Phase 1',
     title: 'MVP Core',
     icon: HeartIcon,
+    infographic: Phase1Infographic,
     color: 'heart-rose',
     items: [
       'Authentication & user management',
@@ -112,6 +119,7 @@ const phases = [
     phase: 'Phase 2',
     title: 'Donor Impact',
     icon: UsersIcon,
+    infographic: Phase2Infographic,
     color: 'earth-clay',
     items: [
       'Vendor registration & onboarding',
@@ -126,6 +134,7 @@ const phases = [
     phase: 'Phase 3',
     title: 'Energy Integration',
     icon: ZapIcon,
+    infographic: Phase3Infographic,
     color: 'sunlit-gold',
     items: [
       'Energy Access Credits',
@@ -140,6 +149,7 @@ const phases = [
     phase: 'Phase 4',
     title: 'Global Scale',
     icon: GlobalIcon,
+    infographic: Phase4Infographic,
     color: 'om-sage',
     items: [
       'Love Coin digital currency',
@@ -577,6 +587,7 @@ export default function AboutPage() {
                 'Phase 3': 'energy-integration',
                 'Phase 4': 'global-scale',
               };
+              const Infographic = phase.infographic;
               return (
                 <Link key={phase.phase} href={`/about/phases/${slugMap[phase.phase]}`}>
                   <motion.div
@@ -588,13 +599,11 @@ export default function AboutPage() {
                   >
                     <Card variant="warm" className="h-full hover:shadow-lg transition-shadow cursor-pointer">
                       <CardContent>
-                        <div className={`w-12 h-12 mb-4 rounded-full bg-${phase.color}/10 flex items-center justify-center`}>
-                          <phase.icon size={24} className={`text-${phase.color}`} />
+                        {/* Phase Infographic */}
+                        <div className="flex justify-center mb-4 -mt-2">
+                          <Infographic size={100} animated={true} />
                         </div>
-                        <div className="text-xs text-stone-grey uppercase tracking-wide mb-1">
-                          {phase.phase}
-                        </div>
-                        <h3 className="text-lg font-semibold text-deep-root mb-4">
+                        <h3 className="text-lg font-semibold text-deep-root mb-4 text-center">
                           {phase.title}
                         </h3>
                         <ul className="space-y-2 mb-4">
@@ -605,7 +614,7 @@ export default function AboutPage() {
                             </li>
                           ))}
                         </ul>
-                        <div className="flex items-center gap-1 text-xs text-heart-rose">
+                        <div className="flex items-center justify-center gap-1 text-xs text-heart-rose">
                           Learn more <ArrowRightIcon size={12} />
                         </div>
                       </CardContent>
