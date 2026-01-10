@@ -20,6 +20,7 @@ import {
   CoinIcon,
   ZapIcon,
 } from '@/components/icons';
+import { PhaseIllustration } from '@/components/illustrations';
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -588,13 +589,13 @@ export default function AboutPage() {
                   >
                     <Card variant="warm" className="h-full hover:shadow-lg transition-shadow cursor-pointer">
                       <CardContent>
-                        <div className={`w-12 h-12 mb-4 rounded-full bg-${phase.color}/10 flex items-center justify-center`}>
-                          <phase.icon size={24} className={`text-${phase.color}`} />
+                        <div className="flex justify-center mb-4">
+                          <PhaseIllustration phase={(index + 1) as 1 | 2 | 3 | 4} size={100} />
                         </div>
-                        <div className="text-xs text-stone-grey uppercase tracking-wide mb-1">
+                        <div className="text-xs text-stone-grey uppercase tracking-wide mb-1 text-center">
                           {phase.phase}
                         </div>
-                        <h3 className="text-lg font-semibold text-deep-root mb-4">
+                        <h3 className="text-lg font-semibold text-deep-root mb-4 text-center">
                           {phase.title}
                         </h3>
                         <ul className="space-y-2 mb-4">

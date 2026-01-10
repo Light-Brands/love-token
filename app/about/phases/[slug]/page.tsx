@@ -22,6 +22,7 @@ import {
   FlowIcon,
   ZapIcon,
 } from '@/components/icons';
+import { PhaseIllustration } from '@/components/illustrations';
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -320,8 +321,8 @@ export default function PhaseDetailPage() {
               <span className="text-sm text-deep-root/60">{phase.timeline}</span>
             </div>
 
-            <div className={`w-20 h-20 mx-auto mb-6 rounded-full bg-${phase.color}/10 flex items-center justify-center`}>
-              <Icon size={40} className={`text-${phase.color}`} />
+            <div className="flex justify-center mb-6">
+              <PhaseIllustration phase={phase.number as 1 | 2 | 3 | 4} size={160} />
             </div>
 
             <div className="text-sm text-stone-grey uppercase tracking-wide mb-2">
