@@ -65,32 +65,36 @@ const communitySpotlights = [
 // Stories / Miracles
 const stories = [
   {
-    title: 'First School Books',
-    description: 'A Love Farmer in Kenya used her meditation earnings to buy school supplies for her three children — the first time she could afford them without borrowing.',
+    title: 'Maria\'s Morning Revolution',
+    slug: 'maria-sunrise-village',
+    description: 'How one woman\'s meditation practice transformed an entire village into a thriving Love Farm.',
+    category: 'Community',
+    date: 'March 2024',
+    imagePromptId: 'community-sunrise-village',
+  },
+  {
+    title: 'Three Generations of Practice',
+    slug: 'tenzin-mountain-heart',
+    description: 'An elder\'s 60-year meditation practice is now funding education for his grandchildren.',
     category: 'Education',
-    date: 'December 2024',
-    imagePromptId: 'community-goal-education',
+    date: 'February 2024',
+    imagePromptId: 'community-mountain-heart',
   },
   {
-    title: 'Community Garden',
-    description: 'Ten Love Farmers pooled their credits to start a community vegetable garden, now feeding 30 families.',
-    category: 'Food Security',
-    date: 'November 2024',
-    imagePromptId: 'community-goal-food',
-  },
-  {
-    title: 'Clean Water Project',
-    description: 'The community reached their energy threshold, unlocking power for a water purification system serving 500 families.',
-    category: 'Infrastructure',
-    date: 'October 2024',
-    imagePromptId: 'community-goal-water',
-  },
-  {
-    title: 'Streak Achievement',
-    description: 'Maria completed 100 consecutive days of meditation, earning enough to open a small tailoring business.',
+    title: 'Meditation on the Water',
+    slug: 'rodel-river-community',
+    description: 'Fishermen discover the value of stillness before dawn, transforming their waiting hours.',
     category: 'Entrepreneurship',
-    date: 'September 2024',
-    imagePromptId: 'streak-bonus',
+    date: 'May 2024',
+    imagePromptId: 'community-river-village',
+  },
+  {
+    title: 'Growing Love in the City',
+    slug: 'amina-garden-valley',
+    description: 'An urban garden becomes a Love Farm, funding irrigation through collective meditation.',
+    category: 'Food Security',
+    date: 'June 2024',
+    imagePromptId: 'community-garden-valley',
   },
 ];
 
@@ -263,48 +267,56 @@ export default function ImpactPage() {
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {communitySpotlights.map((community, index) => (
-              <motion.div
-                key={community.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card variant="warm" className="h-full overflow-hidden">
-                  <div className="relative aspect-video w-full">
-                    <GeneratedImage
-                      promptId={community.imagePromptId}
-                      alt={`${community.name} community`}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <CardContent>
-                    <div className="flex items-center gap-2 mb-4">
-                      <MapPinIcon size={16} className="text-heart-rose" />
-                      <span className="text-sm text-stone-grey">{community.location}</span>
-                    </div>
-                    <h3 className="text-xl font-semibold text-deep-root mb-2">
-                      {community.name}
-                    </h3>
-                    <p className="text-deep-root/70 text-sm mb-4">
-                      {community.story}
-                    </p>
-                    <div className="grid grid-cols-2 gap-4 pt-4 border-t border-border-mist">
-                      <div>
-                        <div className="text-lg font-bold text-heart-rose">{community.farmers}</div>
-                        <div className="text-xs text-stone-grey">Love Farmers</div>
+            {communitySpotlights.map((community, index) => {
+              const slug = community.name.toLowerCase().replace(/\s+/g, '-');
+              return (
+                <Link key={community.name} href={`/communities/${slug}`}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="h-full"
+                  >
+                    <Card variant="warm" className="h-full overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+                      <div className="relative aspect-video w-full">
+                        <GeneratedImage
+                          promptId={community.imagePromptId}
+                          alt={`${community.name} community`}
+                          fill
+                          className="object-cover"
+                        />
                       </div>
-                      <div>
-                        <div className="text-lg font-bold text-sunlit-gold">{community.meditations}</div>
-                        <div className="text-xs text-stone-grey">Meditations</div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+                      <CardContent>
+                        <div className="flex items-center gap-2 mb-4">
+                          <MapPinIcon size={16} className="text-heart-rose" />
+                          <span className="text-sm text-stone-grey">{community.location}</span>
+                        </div>
+                        <h3 className="text-xl font-semibold text-deep-root mb-2">
+                          {community.name}
+                        </h3>
+                        <p className="text-deep-root/70 text-sm mb-4">
+                          {community.story}
+                        </p>
+                        <div className="grid grid-cols-2 gap-4 pt-4 border-t border-border-mist mb-4">
+                          <div>
+                            <div className="text-lg font-bold text-heart-rose">{community.farmers}</div>
+                            <div className="text-xs text-stone-grey">Love Farmers</div>
+                          </div>
+                          <div>
+                            <div className="text-lg font-bold text-sunlit-gold">{community.meditations}</div>
+                            <div className="text-xs text-stone-grey">Meditations</div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-1 text-sm text-heart-rose">
+                          Visit community <ArrowRightIcon size={14} />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </Link>
+              );
+            })}
           </div>
 
           <motion.div
@@ -377,36 +389,42 @@ export default function ImpactPage() {
 
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {stories.map((story, index) => (
-              <motion.div
-                key={story.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white/10 backdrop-blur-sm rounded-card overflow-hidden border border-white/10"
-              >
-                <div className="relative aspect-video w-full">
-                  <GeneratedImage
-                    promptId={story.imagePromptId}
-                    alt={story.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-6">
-                  <div className="flex items-start gap-4">
-                    <QuoteIcon size={24} className="text-sunlit-gold/50 flex-shrink-0" />
-                    <div>
-                      <span className="inline-block px-2 py-0.5 bg-sunlit-gold/20 text-sunlit-gold rounded text-xs mb-2">
-                        {story.category}
-                      </span>
-                      <h3 className="font-semibold text-white mb-2">{story.title}</h3>
-                      <p className="text-white/70 text-sm mb-3">{story.description}</p>
-                      <span className="text-white/40 text-xs">{story.date}</span>
+              <Link key={story.title} href={`/impact/stories/${story.slug}`}>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="bg-white/10 backdrop-blur-sm rounded-card overflow-hidden border border-white/10 hover:bg-white/20 transition-colors cursor-pointer h-full"
+                >
+                  <div className="relative aspect-video w-full">
+                    <GeneratedImage
+                      promptId={story.imagePromptId}
+                      alt={story.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <div className="flex items-start gap-4">
+                      <QuoteIcon size={24} className="text-sunlit-gold/50 flex-shrink-0" />
+                      <div>
+                        <span className="inline-block px-2 py-0.5 bg-sunlit-gold/20 text-sunlit-gold rounded text-xs mb-2">
+                          {story.category}
+                        </span>
+                        <h3 className="font-semibold text-white mb-2">{story.title}</h3>
+                        <p className="text-white/70 text-sm mb-3">{story.description}</p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-white/40 text-xs">{story.date}</span>
+                          <span className="flex items-center gap-1 text-sunlit-gold text-xs">
+                            Read story <ArrowRightIcon size={12} />
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>

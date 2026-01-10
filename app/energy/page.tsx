@@ -21,7 +21,9 @@ import {
 const energyBenefits = [
   {
     threshold: 1000,
-    label: 'Community Lighting',
+    label: 'Foundation',
+    sublabel: 'Extended evening electricity',
+    slug: 'foundation',
     description: 'Extended hours for community lighting infrastructure',
     icon: ZapIcon,
     color: 'sunlit-gold',
@@ -29,35 +31,43 @@ const energyBenefits = [
   },
   {
     threshold: 2500,
-    label: 'Charging Stations',
-    description: 'Phone charging stations for the community',
+    label: 'Growth',
+    sublabel: 'Community lighting upgrades',
+    slug: 'growth',
+    description: 'Solar-powered LED lights installed in community spaces',
     icon: ZapIcon,
-    color: 'sunlit-gold',
-    imagePromptId: 'energy-charging-station',
+    color: 'om-sage',
+    imagePromptId: 'energy-lighting-upgrade',
   },
   {
     threshold: 5000,
-    label: 'Extended Power Hours',
-    description: 'Additional hours of electricity for households',
+    label: 'Strength',
+    sublabel: 'Device charging stations',
+    slug: 'strength',
+    description: 'Phone and device charging stations for the community',
     icon: ZapIcon,
-    color: 'om-sage',
-    imagePromptId: 'energy-dashboard',
+    color: 'heart-rose',
+    imagePromptId: 'energy-charging-station',
   },
   {
     threshold: 10000,
-    label: 'Clean Water Access',
-    description: 'Power for water pumping and purification systems',
-    icon: DropletIcon,
+    label: 'Prosperity',
+    sublabel: 'Refrigeration access',
+    slug: 'prosperity',
+    description: 'Community refrigeration for food and medicine preservation',
+    icon: HeartIcon,
     color: 'meditation-dusk',
-    imagePromptId: 'community-goal-water',
+    imagePromptId: 'energy-refrigeration',
   },
   {
     threshold: 25000,
-    label: 'Food Refrigeration',
-    description: 'Community refrigeration for food preservation',
-    icon: HeartIcon,
-    color: 'heart-rose',
-    imagePromptId: 'energy-refrigeration',
+    label: 'Abundance',
+    sublabel: 'Full infrastructure support',
+    slug: 'abundance',
+    description: 'Comprehensive infrastructure including water and connectivity',
+    icon: GlobalIcon,
+    color: 'success-sage',
+    imagePromptId: 'energy-full-infrastructure',
   },
 ];
 
@@ -245,37 +255,42 @@ export default function EnergyPage() {
               <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-border-mist hidden md:block" />
 
               {energyBenefits.map((benefit, index) => (
-                <motion.div
-                  key={benefit.label}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={`flex items-center gap-6 mb-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
-                >
-                  <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                    <Card className="inline-block overflow-hidden">
-                      <div className="relative aspect-video w-full">
-                        <GeneratedImage
-                          promptId={benefit.imagePromptId}
-                          alt={benefit.label}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <CardContent>
-                        <div className={`inline-flex items-center gap-2 px-3 py-1 bg-${benefit.color}/10 text-${benefit.color} rounded-full text-sm mb-2`}>
-                          <benefit.icon size={16} />
-                          {benefit.threshold.toLocaleString()} EAC
+                <Link key={benefit.label} href={`/energy/benefits/${benefit.slug}`}>
+                  <motion.div
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className={`flex items-center gap-6 mb-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                  >
+                    <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
+                      <Card className="inline-block overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+                        <div className="relative aspect-video w-full">
+                          <GeneratedImage
+                            promptId={benefit.imagePromptId}
+                            alt={benefit.label}
+                            fill
+                            className="object-cover"
+                          />
                         </div>
-                        <h3 className="font-semibold text-deep-root mb-1">{benefit.label}</h3>
-                        <p className="text-deep-root/70 text-sm">{benefit.description}</p>
-                      </CardContent>
-                    </Card>
-                  </div>
-                  <div className={`hidden md:flex w-6 h-6 rounded-full bg-${benefit.color} border-4 border-white shadow-gentle z-10`} />
-                  <div className="flex-1 hidden md:block" />
-                </motion.div>
+                        <CardContent>
+                          <div className={`inline-flex items-center gap-2 px-3 py-1 bg-${benefit.color}/10 text-${benefit.color} rounded-full text-sm mb-2`}>
+                            <benefit.icon size={16} />
+                            Level {index + 1}
+                          </div>
+                          <h3 className="font-semibold text-deep-root mb-1">{benefit.label}</h3>
+                          <p className="text-deep-root/60 text-xs mb-1">{benefit.sublabel}</p>
+                          <p className="text-deep-root/70 text-sm mb-2">{benefit.description}</p>
+                          <div className="flex items-center gap-1 text-xs text-heart-rose">
+                            Learn more <ArrowRightIcon size={12} />
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                    <div className={`hidden md:flex w-6 h-6 rounded-full bg-${benefit.color} border-4 border-white shadow-gentle z-10`} />
+                    <div className="flex-1 hidden md:block" />
+                  </motion.div>
+                </Link>
               ))}
             </div>
           </div>

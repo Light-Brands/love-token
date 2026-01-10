@@ -592,6 +592,7 @@ export default function HomePage() {
                   'Participate in meditations. Earn credits. Create real value through presence.',
                 cta: 'Start Farming',
                 href: '/join?role=farmer',
+                detailHref: '/roles/love-farmer',
                 imagePromptId: 'role-love-farmer',
                 imageDescription: 'Love Farmer meditating at dawn, earning through presence',
               },
@@ -602,6 +603,7 @@ export default function HomePage() {
                   'Subscribe to fund communities. Receive daily love. See your impact flow.',
                 cta: 'Become a Donor',
                 href: '/join?role=donor',
+                detailHref: '/roles/donor',
                 imagePromptId: 'role-donor',
                 imageDescription: 'Heart being shared, love flowing to communities',
               },
@@ -612,6 +614,7 @@ export default function HomePage() {
                   'Accept Love Credits. Serve your community. Redeem for local currency.',
                 cta: 'Join as Vendor',
                 href: '/join?role=vendor',
+                detailHref: '/roles/vendor',
                 imagePromptId: 'role-vendor',
                 imageDescription: 'Village vendor at market, accepting Love Credits',
               },
@@ -624,15 +627,20 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="bg-white/10 backdrop-blur-sm rounded-card p-8 text-center border border-white/10 hover:border-sunlit-gold/30 transition-colors"
               >
-                <div className="mb-6 relative w-24 h-24 mx-auto overflow-hidden rounded-full">
+                <Link href={role.detailHref} className="block mb-6 relative w-24 h-24 mx-auto overflow-hidden rounded-full hover:ring-2 hover:ring-sunlit-gold transition-all">
                   <GeneratedImage
                     promptId={role.imagePromptId}
                     alt={role.imageDescription}
                     fill
                     className="rounded-full"
                   />
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-3">{role.title}</h3>
+                </Link>
+                <Link href={role.detailHref}>
+                  <h3 className="text-xl font-semibold text-white mb-3 hover:text-sunlit-gold transition-colors inline-flex items-center gap-2">
+                    {role.title}
+                    <ArrowRightIcon size={16} className="opacity-50" />
+                  </h3>
+                </Link>
                 <p className="text-white/70 mb-6">{role.description}</p>
                 <Link href={role.href}>
                   <Button variant="outline" className="border-white/30 text-white hover:bg-white/10">
