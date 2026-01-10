@@ -248,7 +248,7 @@ const phasesData: Record<string, {
         items: ['High-throughput transaction processing', 'Global CDN deployment', 'Multi-region database replication', 'Load balancing'],
       },
     ],
-    timeline: 'Months 15+',
+    timeline: 'Months 15-20',
     dependencies: ['Phase 3 complete', 'Regulatory approval in key markets', '50+ active communities', 'Sufficient donor pool for sustainability'],
     successCriteria: [
       'Love Coin trades on approved exchanges',
@@ -258,6 +258,59 @@ const phasesData: Record<string, {
       'Infrastructure projects funded at scale',
     ],
     prevPhase: 'energy-integration',
+    nextPhase: 'universal-love',
+  },
+  'universal-love': {
+    number: 5,
+    title: 'Universal Love',
+    subtitle: 'A new world economy built on love',
+    status: 'future',
+    icon: SparklesIcon,
+    color: 'meditation-dusk',
+    description: 'The ultimate vision: a global network where love is the foundation of economic exchange and human flourishing.',
+    longDescription: 'Phase 5 represents the culmination of everything we\'re building — a fully realized Love Economy that operates as a parallel economic system worldwide. In this phase, love becomes a true universal value, recognized and exchangeable across borders, cultures, and communities. This isn\'t just about technology or currency — it\'s about demonstrating that humanity can organize around love as a fundamental economic principle.',
+    features: [
+      { title: 'Universal Basic Love', description: 'Every human receives a baseline of love-generated value', icon: HeartIcon },
+      { title: 'Cross-Border Exchange', description: 'Love flows freely between countries and economies', icon: GlobalIcon },
+      { title: 'Planetary Meditation', description: 'Coordinated global meditation events with massive collective impact', icon: MeditationIcon },
+      { title: 'Love-Based Governance', description: 'Decision-making systems rooted in compassion and collective wellbeing', icon: UsersIcon },
+      { title: 'Full Economic Integration', description: 'Love Economy interfaces with traditional economies seamlessly', icon: CoinIcon },
+      { title: 'Generational Wealth', description: 'Building intergenerational value through sustained meditation practice', icon: FlowIcon },
+    ],
+    deliverables: [
+      'Universal basic love income system',
+      'Cross-border love exchange protocols',
+      'Global meditation coordination platform',
+      'Love-based governance framework',
+      'Traditional economy integration APIs',
+      'Intergenerational value transfer mechanisms',
+      'Global impact measurement standards',
+      'Love Economy educational curriculum',
+    ],
+    technicalDetails: [
+      {
+        category: 'Global Infrastructure',
+        items: ['Worldwide node network', 'Real-time global synchronization', 'Multi-currency bridge protocols', 'Universal identity system'],
+      },
+      {
+        category: 'Governance',
+        items: ['Global love council', 'Bioregional decision-making', 'Consent-based protocols', 'Conflict resolution systems'],
+      },
+      {
+        category: 'Integration',
+        items: ['Central bank interfaces', 'Traditional payment rails', 'Government partnership frameworks', 'NGO collaboration systems'],
+      },
+    ],
+    timeline: 'Months 21+',
+    dependencies: ['Phase 4 complete', '100+ active communities across 20+ countries', 'International regulatory frameworks', 'Proven sustainability model'],
+    successCriteria: [
+      'Love-generated value recognized by governments',
+      'Cross-border love exchange operational',
+      'Planetary meditation events reach millions',
+      'Traditional economy integration demonstrated',
+      'Measurable global impact on wellbeing indicators',
+    ],
+    prevPhase: 'global-scale',
   },
 };
 
@@ -293,7 +346,7 @@ export default function PhaseDetailPage() {
       <div className="pt-24 pb-4">
         <div className="container-love">
           <Link
-            href="/about#vision"
+            href="/roadmap"
             className="inline-flex items-center gap-2 text-deep-root/60 hover:text-deep-root transition-colors"
           >
             <ArrowLeftIcon size={16} />
