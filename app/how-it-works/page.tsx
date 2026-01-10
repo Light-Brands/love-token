@@ -212,10 +212,10 @@ const flowSteps = [
 
 // Trust and security features
 const trustFeatures = [
-  { icon: UsersIcon, title: 'Community Verification', description: 'Local admins verify Love Farmers — no KYC for MVP' },
-  { icon: ShieldIcon, title: 'Admin Oversight', description: 'Love Farm admins provide human layer of trust' },
-  { icon: GlobalIcon, title: 'TWGE Stewardship', description: 'Global admins ensure system integrity' },
-  { icon: CheckIcon, title: 'Full Audit Trail', description: 'Every credit issuance, transfer, and burn is logged' },
+  { icon: UsersIcon, title: 'Community Verification', description: 'Local admins verify Love Farmers — no KYC for MVP', imagePromptId: 'local-verification' },
+  { icon: ShieldIcon, title: 'Admin Oversight', description: 'Love Farm admins provide human layer of trust', imagePromptId: 'symbol-based-ui' },
+  { icon: GlobalIcon, title: 'TWGE Stewardship', description: 'Global admins ensure system integrity', imagePromptId: 'community-network' },
+  { icon: CheckIcon, title: 'Full Audit Trail', description: 'Every credit issuance, transfer, and burn is logged', imagePromptId: 'audit-trail' },
 ];
 
 export default function HowItWorksPage() {
@@ -383,7 +383,15 @@ export default function HowItWorksPage() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-16 max-w-md mx-auto"
           >
-            <Card variant="warm" className="text-center">
+            <Card variant="warm" className="text-center overflow-hidden">
+              <div className="relative aspect-video w-full">
+                <GeneratedImage
+                  promptId="wallet-display"
+                  alt="Love Token wallet showing balance"
+                  fill
+                  className="object-cover"
+                />
+              </div>
               <CardContent>
                 <h3 className="font-semibold text-deep-root mb-4">The Wallet Experience</h3>
                 <div className="bg-white rounded-love p-6 shadow-gentle mb-4">
@@ -415,6 +423,50 @@ export default function HowItWorksPage() {
               Love Farmers earn credits based on meditation time, with bonuses for consistency.
             </p>
           </motion.div>
+
+          {/* Visual Earning Cards */}
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="bg-white/10 backdrop-blur-sm rounded-card overflow-hidden border border-white/10"
+            >
+              <div className="relative aspect-video w-full">
+                <GeneratedImage
+                  promptId="credits-earning"
+                  alt="Earning Love Credits through meditation"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-4 text-center">
+                <p className="text-white font-medium">Earn Credits</p>
+                <p className="text-white/60 text-sm">Through daily meditation</p>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="bg-white/10 backdrop-blur-sm rounded-card overflow-hidden border border-white/10"
+            >
+              <div className="relative aspect-video w-full">
+                <GeneratedImage
+                  promptId="streak-bonus"
+                  alt="Building meditation streaks for bonus credits"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-4 text-center">
+                <p className="text-white font-medium">Streak Bonuses</p>
+                <p className="text-white/60 text-sm">Consistency multiplies your earnings</p>
+              </div>
+            </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Rates Table */}
@@ -504,6 +556,73 @@ export default function HowItWorksPage() {
               The complete journey of a Love Credit, from creation to redemption.
             </p>
           </motion.div>
+
+          {/* Transaction Visual Cards */}
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <Card className="h-full overflow-hidden">
+                <div className="relative aspect-video w-full">
+                  <GeneratedImage
+                    promptId="transaction-qr-scan"
+                    alt="Scanning QR code for payment"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <CardContent className="text-center">
+                  <h3 className="font-semibold text-deep-root mb-1">Scan & Pay</h3>
+                  <p className="text-deep-root/60 text-sm">QR code transactions</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <Card className="h-full overflow-hidden">
+                <div className="relative aspect-video w-full">
+                  <GeneratedImage
+                    promptId="transaction-peer-transfer"
+                    alt="Peer to peer credit transfer"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <CardContent className="text-center">
+                  <h3 className="font-semibold text-deep-root mb-1">Peer Transfer</h3>
+                  <p className="text-deep-root/60 text-sm">Send credits to others</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <Card className="h-full overflow-hidden">
+                <div className="relative aspect-video w-full">
+                  <GeneratedImage
+                    promptId="vendor-redemption-request"
+                    alt="Vendor requesting credit redemption"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <CardContent className="text-center">
+                  <h3 className="font-semibold text-deep-root mb-1">Vendor Redemption</h3>
+                  <p className="text-deep-root/60 text-sm">Convert to local currency</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
 
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
@@ -673,13 +792,24 @@ export default function HowItWorksPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center"
               >
-                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-om-sage/10 flex items-center justify-center">
-                  <feature.icon size={28} className="text-om-sage" />
-                </div>
-                <h3 className="font-semibold text-deep-root mb-2">{feature.title}</h3>
-                <p className="text-deep-root/70 text-sm">{feature.description}</p>
+                <Card className="h-full overflow-hidden">
+                  <div className="relative aspect-square w-full">
+                    <GeneratedImage
+                      promptId={feature.imagePromptId}
+                      alt={feature.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <CardContent className="text-center">
+                    <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-om-sage/10 flex items-center justify-center">
+                      <feature.icon size={20} className="text-om-sage" />
+                    </div>
+                    <h3 className="font-semibold text-deep-root mb-1">{feature.title}</h3>
+                    <p className="text-deep-root/70 text-xs">{feature.description}</p>
+                  </CardContent>
+                </Card>
               </motion.div>
             ))}
           </div>

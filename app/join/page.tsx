@@ -4,7 +4,7 @@ import React, { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Header, Footer } from '@/components/layout';
-import { Button, Card, CardContent, Input } from '@/components/ui';
+import { Button, Card, CardContent, Input, GeneratedImage } from '@/components/ui';
 import { Lumi } from '@/components/lumi';
 import {
   HeartIcon,
@@ -33,6 +33,7 @@ const roleData = {
     cta: 'Join a Love Farm',
     color: 'heart-rose',
     lumiMessage: 'Welcome, future Love Farmer. Your presence will create real value.',
+    imagePromptId: 'role-love-farmer',
   },
   donor: {
     icon: HeartIcon,
@@ -49,6 +50,7 @@ const roleData = {
     cta: 'Start Contributing',
     color: 'sunlit-gold',
     lumiMessage: 'Your generosity will flow to those who need it. Thank you for being here.',
+    imagePromptId: 'role-donor',
   },
   vendor: {
     icon: StoreIcon,
@@ -65,6 +67,7 @@ const roleData = {
     cta: 'Register Your Business',
     color: 'om-sage',
     lumiMessage: 'Your business can be part of the love economy. Let me show you how.',
+    imagePromptId: 'role-vendor',
   },
   public: {
     icon: UsersIcon,
@@ -81,6 +84,7 @@ const roleData = {
     cta: 'Start Meditating Now',
     color: 'meditation-dusk',
     lumiMessage: 'You can start right now. No registration needed. Just breathe.',
+    imagePromptId: 'role-public-user',
   },
 };
 
@@ -159,11 +163,19 @@ function JoinPageContent() {
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                       >
-                        <Card className="h-full transition-all duration-300 group-hover:shadow-deep-ground group-hover:border-heart-rose/30 border-2 border-transparent">
+                        <Card className="h-full transition-all duration-300 group-hover:shadow-deep-ground group-hover:border-heart-rose/30 border-2 border-transparent overflow-hidden">
+                          <div className="relative aspect-video w-full">
+                            <GeneratedImage
+                              promptId={data.imagePromptId}
+                              alt={data.title}
+                              fill
+                              className="object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                          </div>
                           <CardContent>
                             <div className="flex items-start gap-4">
-                              <div className={`w-14 h-14 rounded-full bg-${data.color}/10 flex items-center justify-center flex-shrink-0 group-hover:bg-${data.color}/20 transition-colors`}>
-                                <data.icon size={28} className={`text-${data.color}`} />
+                              <div className={`w-12 h-12 rounded-full bg-${data.color}/10 flex items-center justify-center flex-shrink-0 group-hover:bg-${data.color}/20 transition-colors`}>
+                                <data.icon size={24} className={`text-${data.color}`} />
                               </div>
                               <div className="flex-1">
                                 <h3 className="text-xl font-semibold text-deep-root mb-1">
@@ -273,20 +285,48 @@ function JoinPageContent() {
                             />
                           )}
                           {selectedRole === 'donor' && (
-                            <div>
-                              <label className="block text-sm font-medium text-deep-root mb-2">
-                                Monthly Contribution
-                              </label>
-                              <div className="grid grid-cols-3 gap-3">
-                                {['$50', '$100', 'Custom'].map((amount) => (
-                                  <button
-                                    key={amount}
-                                    type="button"
-                                    className="py-3 px-4 border-2 border-border-mist rounded-button text-deep-root hover:border-heart-rose hover:text-heart-rose transition-colors focus:outline-none focus:ring-2 focus:ring-heart-rose"
-                                  >
-                                    {amount}
-                                  </button>
-                                ))}
+                            <div className="space-y-4">
+                              <div className="grid grid-cols-3 gap-3 mb-4">
+                                <div className="relative aspect-square rounded-love overflow-hidden">
+                                  <GeneratedImage
+                                    promptId="donor-subscription"
+                                    alt="Donor subscription"
+                                    fill
+                                    className="object-cover"
+                                  />
+                                </div>
+                                <div className="relative aspect-square rounded-love overflow-hidden">
+                                  <GeneratedImage
+                                    promptId="donor-receiving-love"
+                                    alt="Receiving love notifications"
+                                    fill
+                                    className="object-cover"
+                                  />
+                                </div>
+                                <div className="relative aspect-square rounded-love overflow-hidden">
+                                  <GeneratedImage
+                                    promptId="donor-impact-view"
+                                    alt="Viewing your impact"
+                                    fill
+                                    className="object-cover"
+                                  />
+                                </div>
+                              </div>
+                              <div>
+                                <label className="block text-sm font-medium text-deep-root mb-2">
+                                  Monthly Contribution
+                                </label>
+                                <div className="grid grid-cols-3 gap-3">
+                                  {['$50', '$100', 'Custom'].map((amount) => (
+                                    <button
+                                      key={amount}
+                                      type="button"
+                                      className="py-3 px-4 border-2 border-border-mist rounded-button text-deep-root hover:border-heart-rose hover:text-heart-rose transition-colors focus:outline-none focus:ring-2 focus:ring-heart-rose"
+                                    >
+                                      {amount}
+                                    </button>
+                                  ))}
+                                </div>
                               </div>
                             </div>
                           )}

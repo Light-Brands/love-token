@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Header, Footer } from '@/components/layout';
-import { Button, Card, CardContent } from '@/components/ui';
+import { Button, Card, CardContent, GeneratedImage } from '@/components/ui';
 import {
   HeartIcon,
   MeditationIcon,
@@ -42,6 +42,7 @@ const communitySpotlights = [
     farmers: 85,
     meditations: 2341,
     story: 'The first Love Farm in East Africa, where meditation has become a morning ritual for the entire village.',
+    imagePromptId: 'community-sunrise-village',
   },
   {
     name: 'Mountain Heart',
@@ -49,6 +50,7 @@ const communitySpotlights = [
     farmers: 120,
     meditations: 3456,
     story: 'A high-altitude community where Love Farmers gather at dawn to meditate and earn together.',
+    imagePromptId: 'community-mountain-heart',
   },
   {
     name: 'River Community',
@@ -56,6 +58,7 @@ const communitySpotlights = [
     farmers: 65,
     meditations: 1892,
     story: 'Fishermen turned Love Farmers who meditate before dawn while waiting for their catch.',
+    imagePromptId: 'community-river-village',
   },
 ];
 
@@ -66,32 +69,36 @@ const stories = [
     description: 'A Love Farmer in Kenya used her meditation earnings to buy school supplies for her three children — the first time she could afford them without borrowing.',
     category: 'Education',
     date: 'December 2024',
+    imagePromptId: 'community-goal-education',
   },
   {
     title: 'Community Garden',
     description: 'Ten Love Farmers pooled their credits to start a community vegetable garden, now feeding 30 families.',
     category: 'Food Security',
     date: 'November 2024',
+    imagePromptId: 'community-goal-food',
   },
   {
-    title: 'Medical Emergency',
-    description: 'A vendor accepted Love Credits for emergency medicine, saving a child\'s life when the family had no cash.',
-    category: 'Healthcare',
+    title: 'Clean Water Project',
+    description: 'The community reached their energy threshold, unlocking power for a water purification system serving 500 families.',
+    category: 'Infrastructure',
     date: 'October 2024',
+    imagePromptId: 'community-goal-water',
   },
   {
     title: 'Streak Achievement',
     description: 'Maria completed 100 consecutive days of meditation, earning enough to open a small tailoring business.',
     category: 'Entrepreneurship',
     date: 'September 2024',
+    imagePromptId: 'streak-bonus',
   },
 ];
 
 // Donor impact examples
 const donorImpact = [
-  { amount: '$50/month', impact: 'Supports 5 Love Farmers for a month', hours: '~15 hours of love' },
-  { amount: '$100/month', impact: 'Supports 10 Love Farmers for a month', hours: '~30 hours of love' },
-  { amount: '$500/month', impact: 'Supports an entire community', hours: '~150 hours of love' },
+  { amount: '$50/month', impact: 'Supports 5 Love Farmers for a month', hours: '~15 hours of love', imagePromptId: 'donor-subscription' },
+  { amount: '$100/month', impact: 'Supports 10 Love Farmers for a month', hours: '~30 hours of love', imagePromptId: 'donor-receiving-love' },
+  { amount: '$500/month', impact: 'Supports an entire community', hours: '~150 hours of love', imagePromptId: 'donor-impact-view' },
 ];
 
 export default function ImpactPage() {
@@ -126,7 +133,7 @@ export default function ImpactPage() {
         </div>
       </section>
 
-      {/* Global Stats Dashboard */}
+      {/* Global Stats Visual */}
       <section className="section-padding bg-white">
         <div className="container-love">
           <motion.div
@@ -142,6 +149,74 @@ export default function ImpactPage() {
             </p>
           </motion.div>
 
+          {/* Visual Stats Cards */}
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <Card className="h-full overflow-hidden">
+                <div className="relative aspect-square w-full">
+                  <GeneratedImage
+                    promptId="global-love-counter"
+                    alt="Global love statistics"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <CardContent className="text-center">
+                  <div className="text-3xl font-bold gradient-text mb-2">15,847</div>
+                  <div className="text-sm text-stone-grey">Total Meditations Worldwide</div>
+                </CardContent>
+              </Card>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <Card className="h-full overflow-hidden">
+                <div className="relative aspect-square w-full">
+                  <GeneratedImage
+                    promptId="total-meditation-hours"
+                    alt="Total meditation hours"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <CardContent className="text-center">
+                  <div className="text-3xl font-bold gradient-text mb-2">2,341</div>
+                  <div className="text-sm text-stone-grey">Hours of Love Generated</div>
+                </CardContent>
+              </Card>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <Card className="h-full overflow-hidden">
+                <div className="relative aspect-square w-full">
+                  <GeneratedImage
+                    promptId="community-network"
+                    alt="Network of communities"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <CardContent className="text-center">
+                  <div className="text-3xl font-bold gradient-text mb-2">12</div>
+                  <div className="text-sm text-stone-grey">Active Love Farm Communities</div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+
+          {/* Numeric Stats Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-6xl mx-auto">
             {globalStats.map((stat, index) => (
               <motion.div
@@ -196,7 +271,15 @@ export default function ImpactPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card variant="warm" className="h-full">
+                <Card variant="warm" className="h-full overflow-hidden">
+                  <div className="relative aspect-video w-full">
+                    <GeneratedImage
+                      promptId={community.imagePromptId}
+                      alt={`${community.name} community`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                   <CardContent>
                     <div className="flex items-center gap-2 mb-4">
                       <MapPinIcon size={16} className="text-heart-rose" />
@@ -243,18 +326,54 @@ export default function ImpactPage() {
       {/* The Love Feed - Stories */}
       <section className="section-padding bg-gradient-to-br from-meditation-dusk to-deep-root text-white">
         <div className="container-love">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-16"
-          >
-            <h2 className="heading-2 text-white mb-4">The Love Feed</h2>
-            <p className="body-large text-white/70">
-              Miracles happen every day. Here are some of our favorite stories.
-            </p>
-          </motion.div>
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="heading-2 text-white mb-4">The Love Feed</h2>
+              <p className="body-large text-white/70 mb-6">
+                Miracles happen every day. Here are some of our favorite stories.
+              </p>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="relative aspect-square rounded-card overflow-hidden">
+                  <GeneratedImage
+                    promptId="miracle-story"
+                    alt="A miracle story from the community"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative aspect-square rounded-card overflow-hidden">
+                  <GeneratedImage
+                    promptId="inspiration-feed"
+                    alt="Inspiration from the community"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <Card className="bg-white/10 backdrop-blur-sm border border-white/10 p-6">
+                <CardContent>
+                  <QuoteIcon size={32} className="text-sunlit-gold/50 mb-4" />
+                  <p className="text-white/90 text-lg mb-4">
+                    &quot;When I meditated for the first time and saw the credits appear in my wallet,
+                    I knew this was real. My presence has value. My love creates change.&quot;
+                  </p>
+                  <p className="text-sunlit-gold font-medium">— A Love Farmer from Kenya</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {stories.map((story, index) => (
@@ -264,17 +383,27 @@ export default function ImpactPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white/10 backdrop-blur-sm rounded-card p-6 border border-white/10"
+                className="bg-white/10 backdrop-blur-sm rounded-card overflow-hidden border border-white/10"
               >
-                <div className="flex items-start gap-4">
-                  <QuoteIcon size={24} className="text-sunlit-gold/50 flex-shrink-0" />
-                  <div>
-                    <span className="inline-block px-2 py-0.5 bg-sunlit-gold/20 text-sunlit-gold rounded text-xs mb-2">
-                      {story.category}
-                    </span>
-                    <h3 className="font-semibold text-white mb-2">{story.title}</h3>
-                    <p className="text-white/70 text-sm mb-3">{story.description}</p>
-                    <span className="text-white/40 text-xs">{story.date}</span>
+                <div className="relative aspect-video w-full">
+                  <GeneratedImage
+                    promptId={story.imagePromptId}
+                    alt={story.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="flex items-start gap-4">
+                    <QuoteIcon size={24} className="text-sunlit-gold/50 flex-shrink-0" />
+                    <div>
+                      <span className="inline-block px-2 py-0.5 bg-sunlit-gold/20 text-sunlit-gold rounded text-xs mb-2">
+                        {story.category}
+                      </span>
+                      <h3 className="font-semibold text-white mb-2">{story.title}</h3>
+                      <p className="text-white/70 text-sm mb-3">{story.description}</p>
+                      <span className="text-white/40 text-xs">{story.date}</span>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -308,7 +437,15 @@ export default function ImpactPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card className="h-full text-center">
+                <Card className="h-full text-center overflow-hidden">
+                  <div className="relative aspect-video w-full">
+                    <GeneratedImage
+                      promptId={tier.imagePromptId}
+                      alt={tier.impact}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                   <CardContent>
                     <div className="text-3xl font-bold gradient-text mb-4">
                       {tier.amount}

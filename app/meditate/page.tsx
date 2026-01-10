@@ -15,10 +15,10 @@ import { cn } from '@/lib/utils';
 type MeditationState = 'intro' | 'ready' | 'active' | 'complete';
 
 const meditationDurations = [
-  { value: 1, label: '1 min', description: 'Quick reset' },
-  { value: 5, label: '5 min', description: 'Short practice' },
-  { value: 10, label: '10 min', description: 'Standard' },
-  { value: 20, label: '20 min', description: 'Deep practice' },
+  { value: 1, label: '1 min', description: 'Quick reset', imagePromptId: 'meditation-public-donor' },
+  { value: 5, label: '5 min', description: 'Short practice', imagePromptId: 'meditation-presence-verify' },
+  { value: 10, label: '10 min', description: 'Standard', imagePromptId: 'meditation-group-session' },
+  { value: 20, label: '20 min', description: 'Deep practice', imagePromptId: 'wellbeing-checkin' },
 ];
 
 const lumiMessages = {
@@ -160,17 +160,27 @@ export default function MeditatePage() {
                           key={duration.value}
                           onClick={() => setSelectedDuration(duration.value)}
                           className={cn(
-                            'p-4 rounded-love border-2 transition-all',
+                            'rounded-love border-2 transition-all overflow-hidden',
                             selectedDuration === duration.value
                               ? 'border-sunlit-gold bg-sunlit-gold/20'
                               : 'border-white/20 hover:border-white/40'
                           )}
                         >
-                          <div className="text-xl font-bold text-white">
-                            {duration.label}
+                          <div className="relative aspect-square w-full">
+                            <GeneratedImage
+                              promptId={duration.imagePromptId}
+                              alt={duration.description}
+                              fill
+                              className="object-cover opacity-60"
+                            />
                           </div>
-                          <div className="text-xs text-white/60">
-                            {duration.description}
+                          <div className="p-3">
+                            <div className="text-xl font-bold text-white">
+                              {duration.label}
+                            </div>
+                            <div className="text-xs text-white/60">
+                              {duration.description}
+                            </div>
                           </div>
                         </button>
                       ))}

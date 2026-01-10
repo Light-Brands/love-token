@@ -154,10 +154,10 @@ const phases = [
 
 // Team placeholders
 const teamMembers = [
-  { name: 'Founder', role: 'Vision & Strategy', placeholder: true },
-  { name: 'Lead Developer', role: 'Technology', placeholder: true },
-  { name: 'Community Lead', role: 'Love Farm Relations', placeholder: true },
-  { name: 'Advisory Board', role: 'Guidance & Oversight', placeholder: true },
+  { name: 'Founder', role: 'Vision & Strategy', placeholder: true, imagePromptId: 'role-twge-admin' },
+  { name: 'Lead Developer', role: 'Technology', placeholder: true, imagePromptId: 'role-public-user' },
+  { name: 'Community Lead', role: 'Love Farm Relations', placeholder: true, imagePromptId: 'role-farm-admin' },
+  { name: 'Advisory Board', role: 'Guidance & Oversight', placeholder: true, imagePromptId: 'role-vendor' },
 ];
 
 export default function AboutPage() {
@@ -533,20 +533,36 @@ export default function AboutPage() {
       {/* Vision Section - Enhanced with detailed phases */}
       <section className="section-padding">
         <div className="container-love">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-16"
-          >
-            <h2 className="heading-2 mb-4">Our Vision & Roadmap</h2>
-            <p className="body-large text-deep-root/70">
-              We&apos;re building toward a future where the Love Economy operates at global scale —
-              with Love Coin as a recognized digital currency and meditation-generated value
-              funding sustainable development worldwide.
-            </p>
-          </motion.div>
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="heading-2 mb-4">Our Vision & Roadmap</h2>
+              <p className="body-large text-deep-root/70">
+                We&apos;re building toward a future where the Love Economy operates at global scale —
+                with Love Coin as a recognized digital currency and meditation-generated value
+                funding sustainable development worldwide.
+              </p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="relative aspect-video w-full overflow-hidden rounded-card">
+                <GeneratedImage
+                  promptId="project-progress"
+                  alt="Project progress visualization"
+                  fill
+                  className="object-cover rounded-card"
+                />
+              </div>
+            </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {phases.map((phase, index) => (
@@ -610,8 +626,13 @@ export default function AboutPage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="w-20 h-20 mx-auto mb-3 rounded-full bg-lotus-soft/50 flex items-center justify-center">
-                  <UsersIcon size={32} className="text-meditation-dusk/50" />
+                <div className="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden relative">
+                  <GeneratedImage
+                    promptId={member.imagePromptId}
+                    alt={member.name}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <h3 className="font-medium text-deep-root">{member.name}</h3>
                 <p className="text-xs text-stone-grey">{member.role}</p>

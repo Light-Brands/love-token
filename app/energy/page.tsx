@@ -25,6 +25,7 @@ const energyBenefits = [
     description: 'Extended hours for community lighting infrastructure',
     icon: ZapIcon,
     color: 'sunlit-gold',
+    imagePromptId: 'energy-community-power',
   },
   {
     threshold: 2500,
@@ -32,6 +33,7 @@ const energyBenefits = [
     description: 'Phone charging stations for the community',
     icon: ZapIcon,
     color: 'sunlit-gold',
+    imagePromptId: 'energy-charging-station',
   },
   {
     threshold: 5000,
@@ -39,6 +41,7 @@ const energyBenefits = [
     description: 'Additional hours of electricity for households',
     icon: ZapIcon,
     color: 'om-sage',
+    imagePromptId: 'energy-dashboard',
   },
   {
     threshold: 10000,
@@ -46,13 +49,15 @@ const energyBenefits = [
     description: 'Power for water pumping and purification systems',
     icon: DropletIcon,
     color: 'meditation-dusk',
+    imagePromptId: 'community-goal-water',
   },
   {
     threshold: 25000,
-    label: 'Medical Equipment',
-    description: 'Power for essential medical equipment at local clinics',
+    label: 'Food Refrigeration',
+    description: 'Community refrigeration for food preservation',
     icon: HeartIcon,
     color: 'heart-rose',
+    imagePromptId: 'energy-refrigeration',
   },
 ];
 
@@ -249,7 +254,15 @@ export default function EnergyPage() {
                   className={`flex items-center gap-6 mb-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                 >
                   <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                    <Card className="inline-block">
+                    <Card className="inline-block overflow-hidden">
+                      <div className="relative aspect-video w-full">
+                        <GeneratedImage
+                          promptId={benefit.imagePromptId}
+                          alt={benefit.label}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
                       <CardContent>
                         <div className={`inline-flex items-center gap-2 px-3 py-1 bg-${benefit.color}/10 text-${benefit.color} rounded-full text-sm mb-2`}>
                           <benefit.icon size={16} />
