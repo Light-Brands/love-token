@@ -19,7 +19,7 @@ const moreLinks = [
   { name: 'FAQ', href: '/faq' },
   { name: 'Energy Vision', href: '/energy' },
   { name: 'Our Values', href: '/about/values/dignity-first' },
-  { name: 'Roadmap', href: '/about/phases/mvp-core' },
+  { name: 'Roadmap', href: '/roadmap' },
 ];
 
 export default function Header() {
