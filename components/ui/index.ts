@@ -5,3 +5,4 @@ export { default as Badge } from './Badge';
 export { ImagePlaceholder, ImagePlaceholderInline } from './ImagePlaceholder';
 
 export { GeneratedImage, hasGeneratedImage, getGeneratedImagePath } from './GeneratedImage';
+export { PhaseInfographic } from './PhaseInfographic';

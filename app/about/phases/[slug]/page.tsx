@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useParams, notFound } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Header, Footer } from '@/components/layout';
-import { Button, Card, CardContent, GeneratedImage, Badge } from '@/components/ui';
+import { Button, Card, CardContent, GeneratedImage, Badge, PhaseInfographic } from '@/components/ui';
 import {
   HeartIcon,
   MeditationIcon,
@@ -320,12 +320,13 @@ export default function PhaseDetailPage() {
               <span className="text-sm text-deep-root/60">{phase.timeline}</span>
             </div>
 
-            <div className={`w-20 h-20 mx-auto mb-6 rounded-full bg-${phase.color}/10 flex items-center justify-center`}>
-              <Icon size={40} className={`text-${phase.color}`} />
-            </div>
-
-            <div className="text-sm text-stone-grey uppercase tracking-wide mb-2">
-              Phase {phase.number}
+            {/* Phase Infographic */}
+            <div className="mb-6">
+              <PhaseInfographic
+                phase={slug as 'mvp-core' | 'donor-impact' | 'energy-integration' | 'global-scale'}
+                size="lg"
+                showNumber={true}
+              />
             </div>
 
             <h1 className="heading-1 mb-4">

@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Header, Footer } from '@/components/layout';
-import { Button, Card, CardContent, GeneratedImage } from '@/components/ui';
+import { Button, Card, CardContent, GeneratedImage, PhaseInfographic } from '@/components/ui';
 import { Lumi } from '@/components/lumi';
 import {
   HeartIcon,
@@ -92,11 +92,12 @@ const timeline = [
   { year: 'MVP', description: 'Launching the world\'s first functioning Love Economy' },
 ];
 
-// Detailed phases
+// Detailed phases with slugs for infographic component
 const phases = [
   {
     phase: 'Phase 1',
     title: 'MVP Core',
+    slug: 'mvp-core' as const,
     icon: HeartIcon,
     color: 'heart-rose',
     items: [
@@ -111,6 +112,7 @@ const phases = [
   {
     phase: 'Phase 2',
     title: 'Donor Impact',
+    slug: 'donor-impact' as const,
     icon: UsersIcon,
     color: 'earth-clay',
     items: [
@@ -125,6 +127,7 @@ const phases = [
   {
     phase: 'Phase 3',
     title: 'Energy Integration',
+    slug: 'energy-integration' as const,
     icon: ZapIcon,
     color: 'sunlit-gold',
     items: [
@@ -139,6 +142,7 @@ const phases = [
   {
     phase: 'Phase 4',
     title: 'Global Scale',
+    slug: 'global-scale' as const,
     icon: GlobalIcon,
     color: 'om-sage',
     items: [
@@ -536,7 +540,7 @@ export default function AboutPage() {
       </section>
 
       {/* Vision Section - Enhanced with detailed phases */}
-      <section className="section-padding">
+      <section id="vision" className="section-padding">
         <div className="container-love">
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto mb-16">
             <motion.div
@@ -569,51 +573,50 @@ export default function AboutPage() {
             </motion.div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {phases.map((phase, index) => {
-              const slugMap: Record<string, string> = {
-                'Phase 1': 'mvp-core',
-                'Phase 2': 'donor-impact',
-                'Phase 3': 'energy-integration',
-                'Phase 4': 'global-scale',
-              };
-              return (
-                <Link key={phase.phase} href={`/about/phases/${slugMap[phase.phase]}`}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="h-full"
-                  >
-                    <Card variant="warm" className="h-full hover:shadow-lg transition-shadow cursor-pointer">
-                      <CardContent>
-                        <div className={`w-12 h-12 mb-4 rounded-full bg-${phase.color}/10 flex items-center justify-center`}>
-                          <phase.icon size={24} className={`text-${phase.color}`} />
-                        </div>
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {phases.map((phase, index) => (
+              <Link key={phase.phase} href={`/about/phases/${phase.slug}`}>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="h-full"
+                >
+                  <Card variant="warm" className="h-full hover:shadow-lg transition-shadow cursor-pointer overflow-hidden">
+                    {/* Phase Infographic */}
+                    <div className="flex items-center justify-center py-6 bg-gradient-to-b from-lotus-soft/30 to-transparent">
+                      <PhaseInfographic
+                        phase={phase.slug}
+                        size="md"
+                        showNumber={true}
+                      />
+                    </div>
+                    <CardContent className="pt-2">
+                      <div className="text-center mb-4">
                         <div className="text-xs text-stone-grey uppercase tracking-wide mb-1">
                           {phase.phase}
                         </div>
-                        <h3 className="text-lg font-semibold text-deep-root mb-4">
+                        <h3 className="text-lg font-semibold text-deep-root">
                           {phase.title}
                         </h3>
-                        <ul className="space-y-2 mb-4">
-                          {phase.items.slice(0, 3).map((item, i) => (
-                            <li key={i} className="flex items-start gap-2 text-xs text-deep-root/70">
-                              <CheckIcon size={12} className="flex-shrink-0 mt-0.5 text-success-sage" />
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                        <div className="flex items-center gap-1 text-xs text-heart-rose">
-                          Learn more <ArrowRightIcon size={12} />
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                </Link>
-              );
-            })}
+                      </div>
+                      <ul className="space-y-2 mb-4">
+                        {phase.items.slice(0, 4).map((item, i) => (
+                          <li key={i} className="flex items-start gap-2 text-xs text-deep-root/70">
+                            <CheckIcon size={12} className="flex-shrink-0 mt-0.5 text-success-sage" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="flex items-center justify-center gap-1 text-xs text-heart-rose font-medium">
+                        Explore phase details <ArrowRightIcon size={12} />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
