@@ -22,7 +22,7 @@ const footerLinks = {
   company: [
     { name: 'About Us', href: '/about' },
     { name: 'Our Values', href: '/about/values/dignity-first' },
-    { name: 'Roadmap', href: '/about/phases/mvp-core' },
+    { name: 'Roadmap', href: '/roadmap' },
     { name: 'FAQ', href: '/faq' },
     { name: 'Contact', href: '/join' },
   ],
