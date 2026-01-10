@@ -10,18 +10,19 @@ const footerLinks = {
     { name: 'Join as Farmer', href: '/join?role=farmer' },
     { name: 'Become a Donor', href: '/join?role=donor' },
     { name: 'Vendor Network', href: '/join?role=vendor' },
+    { name: 'Meditate', href: '/meditate' },
+  ],
+  community: [
+    { name: 'Impact Dashboard', href: '/impact' },
+    { name: 'Love Farms', href: '/communities' },
+    { name: 'Energy Vision', href: '/energy' },
+    { name: 'Stories', href: '/impact#stories' },
   ],
   company: [
     { name: 'About Us', href: '/about' },
     { name: 'Our Mission', href: '/about#mission' },
-    { name: 'Impact Stories', href: '/impact' },
-    { name: 'Press', href: '/press' },
-  ],
-  resources: [
     { name: 'FAQ', href: '/faq' },
-    { name: 'Community Guidelines', href: '/guidelines' },
-    { name: 'Support', href: '/support' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Contact', href: '/join' },
   ],
   legal: [
     { name: 'Privacy Policy', href: '/privacy' },
@@ -93,13 +94,13 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Resources Links */}
+          {/* Community Links */}
           <div>
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-              Resources
+              Community
             </h4>
             <ul className="space-y-2">
-              {footerLinks.resources.map((link) => (
+              {footerLinks.community.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}

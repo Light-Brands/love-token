@@ -15,6 +15,9 @@ import {
   ArrowRightIcon,
   CheckIcon,
   SparklesIcon,
+  ShieldIcon,
+  EyeIcon,
+  GlobalIcon,
 } from '@/components/icons';
 
 const fadeIn = {
@@ -23,31 +26,39 @@ const fadeIn = {
   transition: { duration: 0.6, ease: 'easeOut' },
 };
 
+// Enhanced currency comparison
 const currencyComparison = [
   {
     type: 'Love Points (LP)',
+    icon: HeartIcon,
     description: 'Global recognition currency',
     features: [
       'Earned by all meditators worldwide',
       'Non-transferable',
       'Cannot be redeemed for money',
       'Tracks global contribution',
+      'Available without registration',
     ],
     color: 'heart-rose',
+    gradient: 'from-heart-rose/20 to-heart-rose/5',
   },
   {
     type: 'Love Credits (LVC)',
+    icon: CoinIcon,
     description: 'Local economic currency',
     features: [
       'Earned by Love Farmers only',
       'Spendable at local vendors',
       'Redeemable for local currency',
       'Creates real economic value',
+      'Displayed in local currency first',
     ],
     color: 'sunlit-gold',
+    gradient: 'from-sunlit-gold/20 to-sunlit-gold/5',
   },
 ];
 
+// Earning rates with examples
 const earningRates = [
   { label: 'Base Rate', value: '0.01 LVC', detail: 'per minute of meditation' },
   { label: 'Individual Bonus', value: '+10%', detail: 'for solo meditations' },
@@ -56,6 +67,14 @@ const earningRates = [
   { label: 'Monthly Bonus', value: '+5%', detail: 'on all credits earned' },
 ];
 
+// Earnings examples
+const earningsExamples = [
+  { duration: '10 min', days: 30, base: '3.0 LVC', withBonus: '~3.3 LVC', note: 'Basic daily practice' },
+  { duration: '20 min', days: 30, base: '6.0 LVC', withBonus: '~6.6 LVC', note: 'Standard practice' },
+  { duration: '20 min + streaks', days: 30, base: '6.0 LVC', withBonus: '~8.5 LVC', note: 'With all bonuses' },
+];
+
+// Enhanced roles with 6 participants
 const roles = [
   {
     icon: UsersIcon,
@@ -101,8 +120,45 @@ const roles = [
       'Serve and support your community',
     ],
   },
+  {
+    icon: ShieldIcon,
+    title: 'Love Farm Admin',
+    description: 'Steward the community',
+    details: [
+      'Verify Love Farmers in your community',
+      'Log group meditation sessions',
+      'Manage community data',
+      'Coordinate vendor onboarding',
+    ],
+  },
+  {
+    icon: GlobalIcon,
+    title: 'TWGE Admin',
+    description: 'System-wide oversight',
+    details: [
+      'Manage credit ceiling globally',
+      'Process vendor redemptions',
+      'Update FX rates',
+      'Ensure system integrity',
+    ],
+  },
 ];
 
+// Transaction flow steps
+const transactionFlow = [
+  { step: 1, title: 'Meditate', description: 'Love Farmer meditates with timer', icon: MeditationIcon },
+  { step: 2, title: 'Verify', description: 'Presence verified via touch', icon: EyeIcon },
+  { step: 3, title: 'Earn', description: 'Credits issued to wallet', icon: CoinIcon },
+  { step: 4, title: 'Scan', description: 'Farmer scans vendor QR code', icon: StoreIcon },
+  { step: 5, title: 'Confirm', description: 'Amount entered and confirmed', icon: CheckIcon },
+  { step: 6, title: 'Transfer', description: 'Credits transfer instantly', icon: FlowIcon },
+  { step: 7, title: 'Balance', description: 'Vendor balance increases', icon: HeartIcon },
+  { step: 8, title: 'Redeem', description: 'Vendor requests redemption', icon: ArrowRightIcon },
+  { step: 9, title: 'Verify', description: 'TWGE verifies and pays', icon: ShieldIcon },
+  { step: 10, title: 'Burn', description: 'Credits are burned', icon: SparklesIcon },
+];
+
+// Flow steps for main section
 const flowSteps = [
   {
     step: 1,
@@ -154,6 +210,14 @@ const flowSteps = [
   },
 ];
 
+// Trust and security features
+const trustFeatures = [
+  { icon: UsersIcon, title: 'Community Verification', description: 'Local admins verify Love Farmers — no KYC for MVP' },
+  { icon: ShieldIcon, title: 'Admin Oversight', description: 'Love Farm admins provide human layer of trust' },
+  { icon: GlobalIcon, title: 'TWGE Stewardship', description: 'Global admins ensure system integrity' },
+  { icon: CheckIcon, title: 'Full Audit Trail', description: 'Every credit issuance, transfer, and burn is logged' },
+];
+
 export default function HowItWorksPage() {
   return (
     <div className="min-h-screen bg-sacred-cream">
@@ -162,10 +226,6 @@ export default function HowItWorksPage() {
       {/* Hero Section */}
       <section className="pt-32 pb-16 md:pt-40 md:pb-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-lotus-soft/20 to-transparent" />
-
-        {/* IMAGE PLACEMENT: Hero Background
-            File: lovetoken-hero-flow-river-1920x1080.png
-            A flowing river metaphor for love circulation */}
 
         <div className="container-love relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -263,7 +323,7 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      {/* Dual Currency Section */}
+      {/* Understanding the Currencies Section */}
       <section className="section-padding">
         <div className="container-love">
           <motion.div
@@ -273,13 +333,13 @@ export default function HowItWorksPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="heading-2 mb-4">The Dual Currency System</h2>
+            <h2 className="heading-2 mb-4">Understanding the Currencies</h2>
             <p className="body-large text-deep-root/70">
               Two currencies, two purposes — global recognition and local economic impact.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {currencyComparison.map((currency, index) => (
               <motion.div
                 key={currency.type}
@@ -288,20 +348,24 @@ export default function HowItWorksPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card variant="warm" className="h-full">
+                <Card className={`h-full bg-gradient-to-br ${currency.gradient} border-${currency.color}/20`}>
                   <CardContent>
-                    <Badge variant={currency.color === 'heart-rose' ? 'love' : 'warning'} className="mb-4">
-                      {currency.type}
-                    </Badge>
-                    <h3 className="text-xl font-semibold text-deep-root mb-2">
-                      {currency.type}
-                    </h3>
-                    <p className="text-stone-grey mb-4">{currency.description}</p>
-                    <ul className="space-y-2">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className={`w-16 h-16 rounded-full bg-${currency.color}/10 flex items-center justify-center`}>
+                        <currency.icon size={32} className={`text-${currency.color}`} />
+                      </div>
+                      <div>
+                        <Badge variant={currency.color === 'heart-rose' ? 'love' : 'warning'}>
+                          {currency.type}
+                        </Badge>
+                        <p className="text-stone-grey text-sm mt-1">{currency.description}</p>
+                      </div>
+                    </div>
+                    <ul className="space-y-3">
                       {currency.features.map((feature, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-deep-root/80">
-                          <CheckIcon size={16} className={`flex-shrink-0 mt-0.5 text-${currency.color}`} />
-                          {feature}
+                        <li key={i} className="flex items-start gap-3 text-deep-root/80">
+                          <CheckIcon size={18} className={`flex-shrink-0 mt-0.5 text-${currency.color}`} />
+                          <span className="text-sm">{feature}</span>
                         </li>
                       ))}
                     </ul>
@@ -310,6 +374,29 @@ export default function HowItWorksPage() {
               </motion.div>
             ))}
           </div>
+
+          {/* Wallet Display Mockup */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-16 max-w-md mx-auto"
+          >
+            <Card variant="warm" className="text-center">
+              <CardContent>
+                <h3 className="font-semibold text-deep-root mb-4">The Wallet Experience</h3>
+                <div className="bg-white rounded-love p-6 shadow-gentle mb-4">
+                  <p className="text-xs text-stone-grey mb-1">Your Balance</p>
+                  <p className="text-4xl font-bold text-deep-root mb-1">₨157</p>
+                  <p className="text-sm text-sunlit-gold">4.65 LVC</p>
+                </div>
+                <p className="text-xs text-deep-root/60 italic">
+                  &quot;We show local currency first — it&apos;s what matters to daily life.&quot;
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </section>
 
@@ -329,42 +416,81 @@ export default function HowItWorksPage() {
             </p>
           </motion.div>
 
-          <div className="max-w-3xl mx-auto">
-            <div className="bg-white/10 backdrop-blur-sm rounded-card p-8 border border-white/10">
-              <div className="grid gap-4">
-                {earningRates.map((rate, index) => (
-                  <motion.div
-                    key={rate.label}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="flex items-center justify-between p-4 bg-white/5 rounded-love"
-                  >
-                    <div>
-                      <span className="font-medium text-white">{rate.label}</span>
-                      <span className="text-white/60 text-sm ml-2">{rate.detail}</span>
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Rates Table */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="bg-white/10 backdrop-blur-sm rounded-card p-6 border border-white/10">
+                <h3 className="font-semibold text-white mb-4">Earning Rates</h3>
+                <div className="space-y-3">
+                  {earningRates.map((rate, index) => (
+                    <div
+                      key={rate.label}
+                      className="flex items-center justify-between p-3 bg-white/5 rounded-love"
+                    >
+                      <div>
+                        <span className="font-medium text-white">{rate.label}</span>
+                        <span className="text-white/60 text-sm ml-2">{rate.detail}</span>
+                      </div>
+                      <span className="text-lg font-bold text-sunlit-gold">{rate.value}</span>
                     </div>
-                    <span className="text-xl font-bold text-sunlit-gold">{rate.value}</span>
-                  </motion.div>
-                ))}
+                  ))}
+                </div>
               </div>
+            </motion.div>
 
-              <div className="mt-8 p-4 bg-sunlit-gold/20 rounded-love border border-sunlit-gold/30">
-                <p className="text-center text-white/90">
-                  <span className="font-semibold">Example:</span> A 20-minute meditation earns{' '}
-                  <span className="text-sunlit-gold font-bold">0.20 LVC</span> base +{' '}
-                  <span className="text-sunlit-gold font-bold">0.02 LVC</span> individual bonus ={' '}
-                  <span className="text-sunlit-gold font-bold">0.22 LVC</span>
-                </p>
+            {/* Examples */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="bg-white/10 backdrop-blur-sm rounded-card p-6 border border-white/10">
+                <h3 className="font-semibold text-white mb-4">What You Can Earn</h3>
+                <div className="space-y-4">
+                  {earningsExamples.map((example, index) => (
+                    <div
+                      key={index}
+                      className="p-4 bg-white/5 rounded-love"
+                    >
+                      <div className="flex justify-between items-start mb-2">
+                        <span className="text-white font-medium">{example.duration} × {example.days} days</span>
+                        <span className="text-sunlit-gold font-bold">{example.withBonus}</span>
+                      </div>
+                      <p className="text-white/50 text-xs">{example.note}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            </motion.div>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-8 max-w-3xl mx-auto"
+          >
+            <div className="p-4 bg-sunlit-gold/20 rounded-love border border-sunlit-gold/30 text-center">
+              <p className="text-white/90">
+                <span className="font-semibold">Example:</span> A 20-minute meditation earns{' '}
+                <span className="text-sunlit-gold font-bold">0.20 LVC</span> base +{' '}
+                <span className="text-sunlit-gold font-bold">0.02 LVC</span> individual bonus ={' '}
+                <span className="text-sunlit-gold font-bold">0.22 LVC</span>
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Roles Section */}
-      <section className="section-padding">
+      {/* Transaction Flow Section */}
+      <section className="section-padding bg-white">
         <div className="container-love">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -373,13 +499,117 @@ export default function HowItWorksPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="heading-2 mb-4">Who Participates</h2>
+            <h2 className="heading-2 mb-4">From Meditation to Market</h2>
             <p className="body-large text-deep-root/70">
-              Everyone plays a vital role in the Love Economy.
+              The complete journey of a Love Credit, from creation to redemption.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              {transactionFlow.map((item, index) => (
+                <motion.div
+                  key={item.step}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className="text-center"
+                >
+                  <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-lotus-soft/50 flex items-center justify-center relative">
+                    <item.icon size={20} className="text-meditation-dusk" />
+                    <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-earth-clay text-white text-xs font-bold flex items-center justify-center">
+                      {item.step}
+                    </span>
+                  </div>
+                  <h4 className="text-xs font-semibold text-deep-root">{item.title}</h4>
+                  <p className="text-xs text-deep-root/60 mt-1">{item.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Presence Verification Section */}
+      <section className="section-padding">
+        <div className="container-love">
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="inline-flex items-center gap-2 px-4 py-2 bg-meditation-dusk/10 text-meditation-dusk rounded-full text-sm font-medium mb-6">
+                <EyeIcon size={16} />
+                Verification
+              </span>
+              <h2 className="heading-2 mb-4">Presence Verification</h2>
+              <p className="body-large text-deep-root/80 mb-6">
+                We verify presence with dignity — ensuring meditation integrity without
+                punishment or surveillance.
+              </p>
+              <div className="space-y-4">
+                {[
+                  { title: 'Touch Active', description: 'Timer running, credits flowing', color: 'success-sage' },
+                  { title: 'Touch Lost', description: 'Timer pauses gently, gentle reminder shown', color: 'warning-amber' },
+                  { title: 'Touch Restored', description: 'Resumes seamlessly, no penalty', color: 'success-sage' },
+                ].map((state, index) => (
+                  <div key={state.title} className="flex items-start gap-3">
+                    <div className={`w-3 h-3 mt-1.5 rounded-full bg-${state.color}`} />
+                    <div>
+                      <span className="font-medium text-deep-root">{state.title}</span>
+                      <span className="text-deep-root/60 text-sm ml-2">{state.description}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-sm text-deep-root/60 mt-6 italic">
+                Group meditations are admin-logged — no touch verification needed.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <Card variant="warm" className="p-8 text-center">
+                <CardContent>
+                  <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-love-flow flex items-center justify-center shadow-love-glow">
+                    <HeartIcon size={40} className="text-white" />
+                  </div>
+                  <p className="text-deep-root/70 text-sm mb-2">Touch to verify presence</p>
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-success-sage/10 text-success-sage rounded-full text-sm">
+                    <div className="w-2 h-2 rounded-full bg-success-sage animate-pulse" />
+                    Active
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Roles Section */}
+      <section className="section-padding bg-white">
+        <div className="container-love">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16"
+          >
+            <h2 className="heading-2 mb-4">The Ecosystem Participants</h2>
+            <p className="body-large text-deep-root/70">
+              Six roles work together to keep love flowing through the system.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {roles.map((role, index) => (
               <motion.div
                 key={role.title}
@@ -391,18 +621,18 @@ export default function HowItWorksPage() {
                 <Card className="h-full">
                   <CardContent>
                     <div className="flex items-start gap-4 mb-4">
-                      <div className="w-14 h-14 rounded-full bg-love-flow flex items-center justify-center flex-shrink-0">
-                        <role.icon size={28} className="text-white" />
+                      <div className="w-12 h-12 rounded-full bg-love-flow flex items-center justify-center flex-shrink-0">
+                        <role.icon size={24} className="text-white" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold text-deep-root">{role.title}</h3>
-                        <p className="text-stone-grey">{role.description}</p>
+                        <h3 className="text-lg font-semibold text-deep-root">{role.title}</h3>
+                        <p className="text-stone-grey text-sm">{role.description}</p>
                       </div>
                     </div>
                     <ul className="space-y-2 pl-2">
                       {role.details.map((detail, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm text-deep-root/80">
-                          <CheckIcon size={16} className="flex-shrink-0 mt-0.5 text-success-sage" />
+                          <CheckIcon size={14} className="flex-shrink-0 mt-0.5 text-success-sage" />
                           {detail}
                         </li>
                       ))}
@@ -412,6 +642,78 @@ export default function HowItWorksPage() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Security & Trust Section */}
+      <section className="section-padding bg-gradient-to-br from-lotus-soft/30 to-sacred-cream">
+        <div className="container-love">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16"
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-2 bg-om-sage/10 text-om-sage rounded-full text-sm font-medium mb-6">
+              <ShieldIcon size={16} />
+              Trust Architecture
+            </span>
+            <h2 className="heading-2 mb-4">Security & Trust</h2>
+            <p className="body-large text-deep-root/70">
+              Trust is built through transparency, community verification, and human oversight.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            {trustFeatures.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="text-center"
+              >
+                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-om-sage/10 flex items-center justify-center">
+                  <feature.icon size={28} className="text-om-sage" />
+                </div>
+                <h3 className="font-semibold text-deep-root mb-2">{feature.title}</h3>
+                <p className="text-deep-root/70 text-sm">{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Trust Layers Diagram */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-12 max-w-2xl mx-auto"
+          >
+            <Card className="p-6">
+              <CardContent>
+                <h3 className="font-semibold text-deep-root text-center mb-6">Trust Layers</h3>
+                <div className="flex flex-col items-center gap-2">
+                  {[
+                    { label: 'Audit Trail', color: 'success-sage' },
+                    { label: 'TWGE Oversight', color: 'om-sage' },
+                    { label: 'Local Admin Verification', color: 'sunlit-gold' },
+                    { label: 'Community Trust', color: 'heart-rose' },
+                  ].map((layer, index) => (
+                    <div
+                      key={layer.label}
+                      className={`w-full max-w-xs py-3 px-6 rounded-love bg-${layer.color}/10 text-center`}
+                      style={{ width: `${100 - index * 10}%` }}
+                    >
+                      <span className={`text-${layer.color} font-medium text-sm`}>{layer.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </section>
 
