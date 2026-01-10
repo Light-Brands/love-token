@@ -14,6 +14,10 @@ import {
   SparklesIcon,
   ZapIcon,
   StarIcon,
+  Phase1Infographic,
+  Phase2Infographic,
+  Phase3Infographic,
+  Phase4Infographic,
 } from '@/components/icons';
 
 const fadeIn = {
@@ -31,6 +35,7 @@ const phases = [
     subtitle: 'Building the Foundation',
     status: 'current' as const,
     icon: HeartIcon,
+    infographic: Phase1Infographic,
     color: 'heart-rose',
     timeline: 'Months 1-4',
     description: 'Establishing core authentication, meditation tracking, and the Love Credit system with 2-3 pilot communities.',
@@ -49,6 +54,7 @@ const phases = [
     subtitle: 'Connecting Donors to Love',
     status: 'upcoming' as const,
     icon: UsersIcon,
+    infographic: Phase2Infographic,
     color: 'earth-clay',
     timeline: 'Months 5-8',
     description: 'Enabling vendor redemptions, donor subscriptions, and transparent impact tracking to complete the economic circle.',
@@ -67,6 +73,7 @@ const phases = [
     subtitle: 'Unlocking Infrastructure',
     status: 'future' as const,
     icon: ZapIcon,
+    infographic: Phase3Infographic,
     color: 'sunlit-gold',
     timeline: 'Months 9-14',
     description: 'Communities that meditate together unlock tangible infrastructure benefits like extended electricity and lighting.',
@@ -85,6 +92,7 @@ const phases = [
     subtitle: 'Worldwide Adoption',
     status: 'future' as const,
     icon: GlobalIcon,
+    infographic: Phase4Infographic,
     color: 'om-sage',
     timeline: 'Months 15-20',
     description: 'Transforming the Love Economy into permanent infrastructure with Love Coin currency and decentralized governance.',
@@ -103,6 +111,7 @@ const phases = [
     subtitle: 'A New World Economy',
     status: 'future' as const,
     icon: StarIcon,
+    infographic: null, // Phase 5 doesn't have an infographic yet
     color: 'meditation-dusk',
     timeline: 'Months 21+',
     description: 'The ultimate vision: a global network where love is the foundation of economic exchange and human flourishing.',
@@ -227,6 +236,7 @@ export default function RoadmapPage() {
           <div className="space-y-8 max-w-6xl mx-auto">
             {phases.map((phase, index) => {
               const Icon = phase.icon;
+              const Infographic = phase.infographic;
               const isEven = index % 2 === 0;
 
               return (
@@ -243,20 +253,28 @@ export default function RoadmapPage() {
                       className="overflow-hidden hover:shadow-lg transition-all cursor-pointer group"
                     >
                       <div className={`grid md:grid-cols-5 ${isEven ? '' : 'md:flex-row-reverse'}`}>
-                        {/* Phase Number & Icon */}
+                        {/* Phase Infographic or Icon */}
                         <div
-                          className={`p-8 flex flex-col items-center justify-center bg-${phase.color}/10 md:col-span-1`}
+                          className={`p-6 md:p-8 flex flex-col items-center justify-center bg-${phase.color}/10 md:col-span-2`}
                         >
-                          <div
-                            className={`w-16 h-16 rounded-full bg-${phase.color}/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}
-                          >
-                            <Icon size={32} className={`text-${phase.color}`} />
-                          </div>
-                          <div className="text-4xl font-bold text-deep-root/20">{phase.number}</div>
+                          {Infographic ? (
+                            <div className="group-hover:scale-105 transition-transform duration-300">
+                              <Infographic size={160} animated={true} />
+                            </div>
+                          ) : (
+                            <>
+                              <div
+                                className={`w-20 h-20 rounded-full bg-${phase.color}/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}
+                              >
+                                <Icon size={40} className={`text-${phase.color}`} />
+                              </div>
+                              <div className="text-5xl font-bold text-deep-root/20">{phase.number}</div>
+                            </>
+                          )}
                         </div>
 
                         {/* Content */}
-                        <div className="p-6 md:p-8 md:col-span-4">
+                        <div className="p-6 md:p-8 md:col-span-3">
                           <div className="flex flex-wrap items-center gap-3 mb-4">
                             <Badge variant={statusConfig[phase.status].variant}>
                               {statusConfig[phase.status].label}
@@ -271,7 +289,7 @@ export default function RoadmapPage() {
                           <p className="text-deep-root/70 mb-6">{phase.description}</p>
 
                           {/* Highlights */}
-                          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+                          <div className="grid sm:grid-cols-2 gap-3 mb-6">
                             {phase.highlights.map((highlight, i) => (
                               <div key={i} className="flex items-center gap-2 text-sm text-deep-root/70">
                                 <CheckIcon size={14} className={`text-${phase.color} flex-shrink-0`} />

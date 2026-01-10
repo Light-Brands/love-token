@@ -663,3 +663,12 @@ export const DownloadIcon: React.FC<IconProps> = ({ size = 24, className, ...pro
     <line x1="12" x2="12" y1="15" y2="3" />
   </svg>
 );
+
+// Re-export Phase Infographics
+export {
+  Phase1Infographic,
+  Phase2Infographic,
+  Phase3Infographic,
+  Phase4Infographic,
+  PhaseInfographics,
+} from './PhaseInfographics';
