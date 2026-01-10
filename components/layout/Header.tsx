@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui';
-import { HeartIcon, MenuIcon, CloseIcon } from '@/components/icons';
+import { HeartIcon, MenuIcon, CloseIcon, ChevronDownIcon } from '@/components/icons';
 
 const navigation = [
   { name: 'About', href: '/about' },
@@ -24,6 +24,19 @@ const moreLinks = [
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [moreDropdownOpen, setMoreDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setMoreDropdownOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-sacred-cream/80 backdrop-blur-lg border-b border-border-mist">
@@ -49,6 +62,45 @@ export default function Header() {
               {item.name}
             </Link>
           ))}
+
+          {/* More Dropdown */}
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setMoreDropdownOpen(!moreDropdownOpen)}
+              className="flex items-center gap-1 text-deep-root/70 hover:text-heart-rose transition-colors font-medium"
+            >
+              More
+              <ChevronDownIcon
+                size={16}
+                className={cn(
+                  'transition-transform duration-200',
+                  moreDropdownOpen && 'rotate-180'
+                )}
+              />
+            </button>
+
+            {/* Dropdown Menu */}
+            <div
+              className={cn(
+                'absolute top-full right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-border-mist overflow-hidden',
+                'transition-all duration-200 ease-out',
+                moreDropdownOpen
+                  ? 'opacity-100 translate-y-0 visible'
+                  : 'opacity-0 -translate-y-2 invisible'
+              )}
+            >
+              {moreLinks.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="block px-4 py-3 text-deep-root/70 hover:text-heart-rose hover:bg-sacred-cream/50 transition-colors"
+                  onClick={() => setMoreDropdownOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* CTA Buttons */}
