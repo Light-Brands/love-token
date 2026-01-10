@@ -11,13 +11,13 @@ const navigation = [
   { name: 'How It Works', href: '/how-it-works' },
   { name: 'Impact', href: '/impact' },
   { name: 'Communities', href: '/communities' },
+  { name: 'Energy', href: '/energy' },
   { name: 'Join', href: '/join' },
   { name: 'Meditate', href: '/meditate' },
 ];
 
 const moreLinks = [
   { name: 'FAQ', href: '/faq' },
-  { name: 'Energy Vision', href: '/energy' },
 ];
 
 export default function Header() {
