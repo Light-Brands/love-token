@@ -113,20 +113,45 @@ function JoinPageContent() {
         <div className="absolute inset-0 bg-gradient-to-b from-lotus-soft/20 to-transparent" />
 
         <div className="container-love relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <h1 className="heading-1 mb-4">
-              Join the
-              <span className="gradient-text block">Love Economy</span>
-            </h1>
-            <p className="body-large text-deep-root/70">
-              Choose how you want to participate. Every role is essential.
-            </p>
-          </motion.div>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center lg:text-left"
+            >
+              <h1 className="heading-1 mb-4">
+                Join the
+                <span className="gradient-text block">Love Economy</span>
+              </h1>
+              <p className="body-large text-deep-root/70">
+                Choose how you want to participate. Every role is essential.
+              </p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="hidden lg:grid grid-cols-2 gap-4"
+            >
+              <div className="relative aspect-square rounded-card overflow-hidden">
+                <GeneratedImage
+                  promptId="onboarding-welcome"
+                  alt="Welcome to the Love Economy"
+                  fill
+                  className="object-cover rounded-card"
+                />
+              </div>
+              <div className="relative aspect-square rounded-card overflow-hidden">
+                <GeneratedImage
+                  promptId="onboarding-choose-role"
+                  alt="Choose your path"
+                  fill
+                  className="object-cover rounded-card"
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
