@@ -259,7 +259,42 @@
       "filename": "symbol-based-ui.png",
       "generatedAt": "2026-01-10T10:36:42.054Z",
       "size": "1024x1024"
+    },
+    "community-sunrise-village": {
+      "filename": "community-sunrise-village.png",
+      "generatedAt": "2026-01-10T10:43:06.140Z",
+      "size": "1024x1024"
+    },
+    "community-mountain-heart": {
+      "filename": "community-mountain-heart.png",
+      "generatedAt": "2026-01-10T10:43:25.898Z",
+      "size": "1024x1024"
+    },
+    "community-river-village": {
+      "filename": "community-river-village.png",
+      "generatedAt": "2026-01-10T10:43:55.191Z",
+      "size": "1024x1024"
+    },
+    "community-garden-valley": {
+      "filename": "community-garden-valley.png",
+      "generatedAt": "2026-01-10T10:44:14.250Z",
+      "size": "1024x1024"
+    },
+    "community-coastal-haven": {
+      "filename": "community-coastal-haven.png",
+      "generatedAt": "2026-01-10T10:44:42.855Z",
+      "size": "1024x1024"
+    },
+    "community-highland-circle": {
+      "filename": "community-highland-circle.png",
+      "generatedAt": "2026-01-10T10:45:04.850Z",
+      "size": "1024x1024"
+    },
+    "hero-energy-community": {
+      "filename": "hero-energy-community.png",
+      "generatedAt": "2026-01-10T10:45:28.566Z",
+      "size": "1024x1024"
     }
   },
-  "lastUpdated": "2026-01-10T10:36:42.059Z"
+  "lastUpdated": "2026-01-10T10:45:28.569Z"
 }

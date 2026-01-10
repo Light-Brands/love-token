@@ -61,6 +61,13 @@ const IMAGE_MAP: Record<string, string> = {
   'audit-trail': '/images/audit-trail.png',
   'energy-refrigeration': '/images/energy-refrigeration.png',
   'symbol-based-ui': '/images/symbol-based-ui.png',
+  'community-sunrise-village': '/images/community-sunrise-village.png',
+  'community-mountain-heart': '/images/community-mountain-heart.png',
+  'community-river-village': '/images/community-river-village.png',
+  'community-garden-valley': '/images/community-garden-valley.png',
+  'community-coastal-haven': '/images/community-coastal-haven.png',
+  'community-highland-circle': '/images/community-highland-circle.png',
+  'hero-energy-community': '/images/hero-energy-community.png',
 };
 
 interface GeneratedImageProps {

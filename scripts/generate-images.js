@@ -33,6 +33,15 @@ try {
   // V2 prompts not available, that's okay
 }
 
+// Import V3 prompts (missing community images) if available
+let V3_PROMPTS = [];
+try {
+  const v3Module = require('./image-prompts-v3.js');
+  V3_PROMPTS = v3Module.MISSING_IMAGE_PROMPTS || [];
+} catch (e) {
+  // V3 prompts not available, that's okay
+}
+
 // Brand style guide for consistent image generation
 const BRAND_STYLE = `
 Style Guidelines:
@@ -183,8 +192,8 @@ const IMAGE_PROMPTS = [
   },
 ];
 
-// Merge V1 and V2 prompts (V2 prompts are added after V1)
-const ALL_IMAGE_PROMPTS = [...IMAGE_PROMPTS, ...V2_PROMPTS];
+// Merge V1, V2, and V3 prompts
+const ALL_IMAGE_PROMPTS = [...IMAGE_PROMPTS, ...V2_PROMPTS, ...V3_PROMPTS];
 
 // Utility functions
 function log(message, type = 'info') {
@@ -262,11 +271,14 @@ async function main() {
   if (listOnly) {
     console.log('\n📷 Love Token Image Prompts (V1 + V2)\n');
     console.log('='.repeat(60));
-    console.log(`V1 (Original): ${IMAGE_PROMPTS.length} images`);
-    console.log(`V2 (New MVP):  ${V2_PROMPTS.length} images`);
+    console.log(`V1 (Original):  ${IMAGE_PROMPTS.length} images`);
+    console.log(`V2 (New MVP):   ${V2_PROMPTS.length} images`);
+    console.log(`V3 (Missing):   ${V3_PROMPTS.length} images`);
     console.log('='.repeat(60));
     ALL_IMAGE_PROMPTS.forEach((p, i) => {
-      const version = i < IMAGE_PROMPTS.length ? '[V1]' : '[V2]';
+      let version = '[V1]';
+      if (i >= IMAGE_PROMPTS.length + V2_PROMPTS.length) version = '[V3]';
+      else if (i >= IMAGE_PROMPTS.length) version = '[V2]';
       console.log(`\n${i + 1}. ${version} ${p.promptId}`);
       console.log(`   Description: ${p.description}`);
       console.log(`   Size: ${p.size}`);
