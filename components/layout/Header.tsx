@@ -16,6 +16,7 @@ const navigation = [
 ];
 
 const moreLinks = [
+  { name: 'Whitepaper', href: '/whitepaper' },
   { name: 'FAQ', href: '/faq' },
   { name: 'Energy Vision', href: '/energy' },
   { name: 'Our Values', href: '/about/values/dignity-first' },
